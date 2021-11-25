@@ -1,10 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Globalization;
 
 namespace Lysia
 {
     class Interpreter
     {
+        public static void ShowError(string message)
+        {
+            Console.WriteLine(message);
+            Environment.Exit(1);
+        }
+
+        private static bool VerifType(string type, dynamic val)
+        {
+            if (val is int nb)
+                return type == "int";
+            else if (val is float nb2)
+                return type == "float";
+            else if (val is string txt)
+                return type == "string";
+            else
+                return false;
+        }
+
         public static dynamic Eval(dynamic exp, Env env = null)
         {
             if (env == null)
@@ -17,15 +37,12 @@ namespace Lysia
                 else if (token.type == TokenType.INTEGER)
                     return Convert.ToInt32(token.value);
                 else if (token.type == TokenType.FLOAT)
-                    return Convert.ToDecimal(token.value);
+                    return Convert.ToSingle(token.value, CultureInfo.InvariantCulture);
                 else if (token.type == TokenType.IDENTIFIER)
                 {
-                    Type t = env.GetTypeOf(token.value);
+                    dynamic t = env.Get(token.value);
                     if(t is null)
-                    {
-                        Console.WriteLine($"Unknown Identifier : {token}");
-                        Environment.Exit(1);
-                    }
+                        ShowError($"Unknown Identifier : {token}");
                     return t;
                 }
             }
@@ -48,21 +65,58 @@ namespace Lysia
                     }
                     else if(op is Token tok && tok.type == TokenType.IDENTIFIER)
                     {
-                        if (tok.value == "#") { }
-                        else
+                        dynamic proced = Eval(tok, env);
+                        if (proced is Type proc)
                         {
-                            dynamic proc = Eval(tok, env);
+                            int[] nbParameters = (int[])proc.GetField("nbParameters").GetValue(null);
+                            string[] typeParameters = (string[])proc.GetField("typeParameters").GetValue(null);
+                            bool evaluateParameters = (bool)proc.GetField("evaluateParameters").GetValue(null);
                             List<dynamic> vals = new List<dynamic>();
-                            for (int i = 1; i < list.Count; i++)
-                                vals.Add(Eval(list[i], env));
-                            if(proc != null)
-                                return proc.GetMethod("Eval").Invoke(null, new object[] { vals });
-                            else
+
+                            if (evaluateParameters)
                             {
-                                Console.WriteLine($"Unknown Procedure : {tok}");
-                                Environment.Exit(1);
+                                for (int i = 1; i < list.Count; i++)
+                                    vals.Add(Eval(list[i], env));
                             }
+                            else
+                                vals.AddRange(list.Skip(1));
+
+                            if(nbParameters.Length != 0)
+                            {
+                                bool validate = false;
+                                foreach(int nbParameter in nbParameters)
+                                {
+                                    if(nbParameter == vals.Count)
+                                    {
+                                        validate = true;
+                                        break;
+                                    }    
+                                }
+                                if(!validate)
+                                    ShowError($"Wrong Number of arguments. Provided : {vals.Count} - Expected : {string.Join(", ", nbParameters)} - Procedure : {proc}");
+                            }
+
+                            if (typeParameters.Length != 0)
+                            {
+                                foreach (dynamic val in vals)
+                                {
+                                    bool validate = false;
+                                    foreach (string typeParameter in typeParameters)
+                                    {
+                                        if (VerifType(typeParameter, val))
+                                        {
+                                            validate = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!validate)
+                                        ShowError($"Wrong Type of arguments. Provided : {string.Join(", ", vals.Select(val => val.GetType()))} - Expected : {string.Join(", ", typeParameters)} - Procedure : {proc}");
+                                }
+                            }
+                            return proc.GetMethod("Eval").Invoke(null, new object[] { env, vals });
                         }
+                        else
+                            ShowError($"Unknown Procedure : {tok}");
                     }
                 }
             }

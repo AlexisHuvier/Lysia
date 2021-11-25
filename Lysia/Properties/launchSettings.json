@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Lysia": {
+      "commandName": "Project",
+      "commandLineArgs": "-d prog"
+    }
+  }
+}

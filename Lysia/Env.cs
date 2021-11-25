@@ -6,24 +6,33 @@ namespace Lysia
 {
     class Env
     {
-        Dictionary<string, Type> values;
+        public Dictionary<string, Type> core_methods;
+        public Dictionary<string, dynamic> variables;
 
         public Env()
         {
-            values = new Dictionary<string, Type>();
+            core_methods = new Dictionary<string, Type>();
+            variables = new Dictionary<string, dynamic>();
         }
 
-        public Type GetTypeOf(string name)
+        public bool IsDefine(string name)
         {
-            if (values.ContainsKey(name))
-                return values[name];
+            return core_methods.ContainsKey(name) || variables.ContainsKey(name);
+        }
+
+        public dynamic Get(string name)
+        {
+            if (core_methods.ContainsKey(name))
+                return core_methods[name];
+            if (variables.ContainsKey(name))
+                return variables[name];
             return null;
         }
 
         public void Add(string[] names, Type[] types)
         {
             for (int i = 0; i < names.Length; i++)
-                values.Add(names[i], types[i]);
+                core_methods.Add(names[i], types[i]);
         }
 
         public static Env GetStandartEnv()
@@ -31,9 +40,13 @@ namespace Lysia
             Env env = new Env();
 
             env.Add(new string[] {
-                "display", "+"
+                "#", "display", "def", "del", "if", "for", "while",
+                "==", "!=",
+                "+"
             }, new Type[] {
-                typeof(Core.Display), typeof(Arithmetic.Add)
+                typeof(Core.Comment), typeof(Core.Display), typeof(Core.Def), typeof(Core.Del), typeof(Core.If), typeof(Core.For), typeof(Core.While),
+                typeof(Logic.Equals), typeof(Logic.NotEquals),
+                typeof(Arithmetic.Add)
             });
 
             return env;

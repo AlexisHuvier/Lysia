@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+using System.Globalization;
 
 namespace Lysia
 {
@@ -16,7 +17,7 @@ namespace Lysia
             {
                 try
                 {
-                    Convert.ToDecimal(value);
+                    Convert.ToSingle(value, CultureInfo.InvariantCulture);
                     return TokenType.FLOAT;
                 }
                 catch(FormatException)
