@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace Lysia
+namespace Lysia.Utils
 {
     class Print
     {
+        public static void PrintEnv(Env env)
+        {
+            Console.WriteLine("=> Core Methods :");
+            Console.WriteLine($"{string.Join(", ", env.core_methods.Select(a => $"{a.Key}: {a.Value}"))}");
+            Console.WriteLine("=> Variables :");
+            Console.WriteLine($"{string.Join(", ", env.variables.Select(a => $"{a.Key}: {a.Value}"))}");
+        }
+
         public static void PrintObject(dynamic obj, int nb = 0)
         {
             if (obj is List<dynamic> list)
