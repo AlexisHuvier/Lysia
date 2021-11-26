@@ -1,11 +1,34 @@
 ﻿using System.Collections.Generic;
 using System;
+using System.IO;
+using Lysia.Utils;
 
 
 namespace Lysia.Functions
 {
     class Core
     {
+        public class Import
+        {
+            public static int[] nbParameters = new int[] { 1 };
+            public static string[] typeParameters = new string[] { "string" };
+            public static bool evaluateParameters = true;
+
+            public static dynamic Eval(Env env, List<dynamic> parameters)
+            {
+                if(Imports.IsDefined(parameters[0]))
+                {
+                    foreach (KeyValuePair<string, Type> pair in Imports.Get(parameters[0]))
+                        env.core_methods.Add(pair.Key, pair.Value);
+                }
+                else if(File.Exists(parameters[0]) && Path.GetExtension(parameters[0]) == ".lysia")
+                    Interpreter.Eval(Parser.Parse(Lexer.Tokenize(File.ReadAllText(parameters[0]))), env);
+                else
+                    Interpreter.ShowError($"Unknown Import : {parameters[0]}");
+                return null;
+            }
+        }
+
         public class While
         {
             public static int[] nbParameters = new int[] { 2 };
