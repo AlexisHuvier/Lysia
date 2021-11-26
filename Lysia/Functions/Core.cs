@@ -103,24 +103,6 @@ namespace Lysia.Functions
             }
         }
 
-        public class Display
-        {
-            public static int[] nbParameters = new int[] { };
-            public static string[] typeParameters = new string[] { };
-            public static bool evaluateParameters = true;
-
-            public static dynamic Eval(Env env, List<dynamic> parameters)
-            {
-                string text = "";
-                foreach (dynamic obj in parameters)
-                    text += obj.ToString() + " ";
-                if (text.Length >= 1)
-                    text = text[..^1];
-                Console.WriteLine(text);
-                return null;
-            }
-        }
-
         public class Comment
         {
             public static int[] nbParameters = new int[] { };
