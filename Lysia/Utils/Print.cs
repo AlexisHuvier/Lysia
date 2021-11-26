@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Lysia
 {
-    class Utils
+    class Print
     {
         public static void PrintObject(object obj, int nb = 0)
         {
