@@ -35,20 +35,27 @@ namespace Lysia.Functions
         public class Import
         {
             public static int[] nbParameters = new int[] { 1 };
-            public static string[] typeParameters = new string[] { "string" };
-            public static bool evaluateParameters = true;
+            public static string[] typeParameters = new string[] { };
+            public static bool evaluateParameters = false;
 
             public static dynamic Eval(Env env, List<dynamic> parameters)
             {
-                if(Imports.IsDefined(parameters[0]))
+                if (parameters[0] is Token tok && tok.type == TokenType.IDENTIFIER)
                 {
-                    foreach (KeyValuePair<string, Type> pair in Imports.Get(parameters[0]))
-                        env.core_methods.Add(pair.Key, pair.Value);
+                    string import = tok.value;
+                    if (Imports.IsDefined(import))
+                    {
+                        foreach (KeyValuePair<string, Type> pair in Imports.Get(import))
+                            env.core_methods.Add(pair.Key, pair.Value);
+                    }
+                    else if (File.Exists(import) && Path.GetExtension(import) == ".lysia")
+                        Interpreter.Eval(Parser.Parse(Lexer.Tokenize(File.ReadAllText(import))), env);
+                    else
+                        Interpreter.ShowError($"Unknown Import : {import}");
                 }
-                else if(File.Exists(parameters[0]) && Path.GetExtension(parameters[0]) == ".lysia")
-                    Interpreter.Eval(Parser.Parse(Lexer.Tokenize(File.ReadAllText(parameters[0]))), env);
                 else
-                    Interpreter.ShowError($"Unknown Import : {parameters[0]}");
+                    Interpreter.ShowError($"Wrong Type of argument. Provided : {parameters[0]} - Expected : Identifier - Procedure : {typeof(Import)}");
+
                 return null;
             }
         }
