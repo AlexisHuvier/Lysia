@@ -29,7 +29,7 @@ namespace Lysia
             return null;
         }
 
-        public void Add(string[] names, Type[] types)
+        public void AddCoreMethod(string[] names, Type[] types)
         {
             for (int i = 0; i < names.Length; i++)
                 core_methods.Add(names[i], types[i]);
@@ -39,10 +39,10 @@ namespace Lysia
         {
             Env env = new Env();
 
-            env.Add(new string[] {
-                "#", "def", "del", "if", "for", "while", "import",
-                "==", "!=",
-                "+"
+            env.AddCoreMethod(new string[] {
+                "#", "def", "del", "if", "for", "while", "import", "func", "ret",
+                "==", "!=", ">", ">=", "<", "<=",
+                "+", "-"
             }, new Type[] {
                 typeof(Core.Comment), typeof(Core.Def), typeof(Core.Del), typeof(Core.If), typeof(Core.For), typeof(Core.While), typeof(Core.Import),
                 typeof(Logic.Equals), typeof(Logic.NotEquals),
