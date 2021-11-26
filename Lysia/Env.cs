@@ -35,6 +35,15 @@ namespace Lysia
                 core_methods.Add(names[i], types[i]);
         }
 
+        public static Env FromEnv(Env env)
+        {
+            return new Env()
+            {
+                core_methods = new Dictionary<string, Type>(env.core_methods),
+                variables = new Dictionary<string, dynamic>(env.variables)
+            };
+        }
+
         public static Env GetStandartEnv()
         {
             Env env = new Env();

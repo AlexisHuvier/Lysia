@@ -7,6 +7,8 @@ namespace Lysia
 {
     class Interpreter
     {
+        public static bool DEBUG = false;
+
         public static void ShowError(string message)
         {
             Console.WriteLine(message);
@@ -42,7 +44,15 @@ namespace Lysia
                 {
                     dynamic t = env.Get(token.value);
                     if(t is null)
+                    {
+                        if(DEBUG)
+                        {
+                            Print.PrintObject(env.core_methods);
+                            Print.PrintObject(env.variables);
+                        }
                         ShowError($"Unknown Identifier : {token}");
+
+                    }
                     return t;
                 }
             }

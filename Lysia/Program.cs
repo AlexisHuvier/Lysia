@@ -49,6 +49,7 @@ namespace Lysia
             dynamic obj = Parser.Parse(Lexer.Tokenize(prog));
             if (debug)
             {
+                Interpreter.DEBUG = true;
                 Print.PrintObject(obj);
                 System.Console.WriteLine();
             }
