@@ -66,7 +66,14 @@ namespace Lysia
                     else if(op is Token tok && tok.type == TokenType.IDENTIFIER)
                     {
                         dynamic proced = Eval(tok, env);
-                        if (proced is Type proc)
+                        if(proced is Utils.Procedure procedure)
+                        {
+                            List<dynamic> vals = new List<dynamic>();
+                            for (int i = 1; i < list.Count; i++)
+                                vals.Add(Eval(list[i], env));
+                            return procedure.Eval(Env.FromEnv(env), vals);
+                        }
+                        else if (proced is Type proc)
                         {
                             int[] nbParameters = (int[])proc.GetField("nbParameters").GetValue(null);
                             string[] typeParameters = (string[])proc.GetField("typeParameters").GetValue(null);
