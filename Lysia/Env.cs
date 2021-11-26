@@ -40,11 +40,11 @@ namespace Lysia
             Env env = new Env();
 
             env.Add(new string[] {
-                "#", "display", "def", "del", "if", "for", "while",
+                "#", "def", "del", "if", "for", "while", "import",
                 "==", "!=",
                 "+"
             }, new Type[] {
-                typeof(Core.Comment), typeof(Core.Display), typeof(Core.Def), typeof(Core.Del), typeof(Core.If), typeof(Core.For), typeof(Core.While),
+                typeof(Core.Comment), typeof(Core.Def), typeof(Core.Del), typeof(Core.If), typeof(Core.For), typeof(Core.While), typeof(Core.Import),
                 typeof(Logic.Equals), typeof(Logic.NotEquals),
                 typeof(Arithmetic.Add)
             });
