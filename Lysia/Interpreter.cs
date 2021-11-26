@@ -21,6 +21,8 @@ namespace Lysia
                 return type == "int";
             else if (val is float nb2)
                 return type == "float";
+            else if (val is bool boolean)
+                return type == "bool";
             else if (val is string txt)
                 return type == "string";
             else

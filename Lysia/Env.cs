@@ -35,6 +35,12 @@ namespace Lysia
                 core_methods.Add(names[i], types[i]);
         }
 
+        public void AddVariables(string[] names, dynamic[] values)
+        {
+            for (int i = 0; i < names.Length; i++)
+                variables.Add(names[i], values[i]);
+        }
+
         public static Env FromEnv(Env env)
         {
             return new Env()
@@ -58,6 +64,10 @@ namespace Lysia
                 typeof(Arithmetic.Add), typeof(Arithmetic.Sub), typeof(Arithmetic.Mul), typeof(Arithmetic.Div), typeof(Arithmetic.Mod)
             });
 
+            env.AddVariables(new string[] {
+                "true", "false"
+            }, new dynamic[] {
+                true, false
             });
 
             return env;
