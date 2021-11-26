@@ -53,9 +53,9 @@ namespace Lysia
                 "==", "!=", ">", ">=", "<", "<=",
                 "+", "-"
             }, new Type[] {
-                typeof(Logic.Equals), typeof(Logic.NotEquals),
-                typeof(Arithmetic.Add)
                 typeof(Core.Comment), typeof(Core.Def), typeof(Core.Del), typeof(Core.If), typeof(Core.For), typeof(Core.While), typeof(Core.Import), typeof(Core.Func), typeof(Core.Ret),
+                typeof(Logic.Equals), typeof(Logic.NotEquals), typeof(Logic.Greater), typeof(Logic.GreaterOrEquals), typeof(Logic.Less), typeof(Logic.LessOrEquals),
+                typeof(Arithmetic.Add), typeof(Arithmetic.Sub)
             });
 
             return env;

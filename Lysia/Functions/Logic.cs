@@ -21,5 +21,43 @@ namespace Lysia.Functions
 
             public static dynamic Eval(Env env, List<dynamic> parameters) => parameters[0] != parameters[1];
         }
+
+        public class Greater
+        {
+            public static int[] nbParameters = new int[] { 2 };
+            public static string[] typeParameters = new string[] { };
+            public static bool evaluateParameters = true;
+
+            public static dynamic Eval(Env env, List<dynamic> parameters) => parameters[0] > parameters[1];
+        }
+
+        public class GreaterOrEquals
+        {
+            public static int[] nbParameters = new int[] { 2 };
+            public static string[] typeParameters = new string[] { };
+            public static bool evaluateParameters = true;
+
+            public static dynamic Eval(Env env, List<dynamic> parameters) => parameters[0] >= parameters[1];
+        }
+
+        public class Less
+        {
+            public static int[] nbParameters = new int[] { 2 };
+            public static string[] typeParameters = new string[] { };
+            public static bool evaluateParameters = true;
+
+            public static dynamic Eval(Env env, List<dynamic> parameters) => parameters[0] < parameters[1];
+
+        }
+
+        public class LessOrEquals
+        {
+            public static int[] nbParameters = new int[] { 2 };
+            public static string[] typeParameters = new string[] { };
+            public static bool evaluateParameters = true;
+
+            public static dynamic Eval(Env env, List<dynamic> parameters) => parameters[0] <= parameters[1];
+
+        }
     }
 }
