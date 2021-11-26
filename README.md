@@ -10,8 +10,8 @@ Documentation : Coming Soon
 
 ## Features
 
-- Basic mathematic operators : +
-- Basic logic operators : =, !=
+- Basic mathematic operators : +, -, *, /, %
+- Basic logic operators : =, !=, <, <=, >, >=
 - Basic functions :
 
   - Variables management with def, del

@@ -47,7 +47,6 @@ namespace Lysia.Functions
             public static bool evaluateParameters = true;
 
             public static dynamic Eval(Env env, List<dynamic> parameters) => parameters[0] < parameters[1];
-
         }
 
         public class LessOrEquals
@@ -57,6 +56,22 @@ namespace Lysia.Functions
             public static bool evaluateParameters = true;
 
             public static dynamic Eval(Env env, List<dynamic> parameters) => parameters[0] <= parameters[1];
+        }
+
+        public class And
+        {
+            public static int[] nbParameters = new int[] { 2 };
+            public static string[] typeParameters = new string[] { "bool" };
+            public static bool evaluateParameters = true;
+
+            public static dynamic Eval(Env env, List<dynamic> parameters) => parameters[0] && parameters[1];
+        }
+
+        public class Or
+        {
+            public static int[] nbParameters = new int[] { 2 };
+            public static string[] typeParameters = new string[] { "bool" };
+            public static bool evaluateParameters = true;
 
         }
     }

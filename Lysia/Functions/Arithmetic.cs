@@ -20,10 +20,11 @@ namespace Lysia.Functions
                 return retour;
             }
         }
+
         public class Sub
         {
             public static int[] nbParameters = new int[] { };
-            public static string[] typeParameters = new string[] { "int", "float", "string" };
+            public static string[] typeParameters = new string[] { "int", "float" };
             public static bool evaluateParameters = true;
 
             public static dynamic Eval(Env env, List<dynamic> parameters)
@@ -35,6 +36,57 @@ namespace Lysia.Functions
                 dynamic retour = parameters[0];
                 for (int i = 1; i < parameters.Count; i++)
                     retour -= parameters[i];
+                return retour;
+            }
+        }
+
+        public class Mul
+        {
+            public static int[] nbParameters = new int[] { };
+            public static string[] typeParameters = new string[] { "int", "float" };
+            public static bool evaluateParameters = true;
+
+            public static dynamic Eval(Env env, List<dynamic> parameters)
+            {
+                if (parameters.Count <= 1)
+                    Interpreter.ShowError($"Wrong Number of arguments. Provided : {parameters.Count} - Expected : 2 or more - Procedure : {typeof(Sub)}");
+                dynamic retour = parameters[0];
+                for (int i = 1; i < parameters.Count; i++)
+                    retour *= parameters[i];
+                return retour;
+            }
+        }
+
+        public class Div
+        {
+            public static int[] nbParameters = new int[] { };
+            public static string[] typeParameters = new string[] { "int", "float" };
+            public static bool evaluateParameters = true;
+
+            public static dynamic Eval(Env env, List<dynamic> parameters)
+            {
+                if (parameters.Count <= 1)
+                    Interpreter.ShowError($"Wrong Number of arguments. Provided : {parameters.Count} - Expected : 2 or more - Procedure : {typeof(Sub)}");
+                dynamic retour = parameters[0];
+                for (int i = 1; i < parameters.Count; i++)
+                    retour /= parameters[i];
+                return retour;
+            }
+        }
+
+        public class Mod
+        {
+            public static int[] nbParameters = new int[] { };
+            public static string[] typeParameters = new string[] { "int", "float" };
+            public static bool evaluateParameters = true;
+
+            public static dynamic Eval(Env env, List<dynamic> parameters)
+            {
+                if (parameters.Count <= 1)
+                    Interpreter.ShowError($"Wrong Number of arguments. Provided : {parameters.Count} - Expected : 2 or more - Procedure : {typeof(Sub)}");
+                dynamic retour = parameters[0];
+                for (int i = 1; i < parameters.Count; i++)
+                    retour %= parameters[i];
                 return retour;
             }
         }
