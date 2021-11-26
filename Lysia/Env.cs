@@ -51,6 +51,7 @@ namespace Lysia
             env.AddCoreMethod(new string[] {
                 "#", "def", "del", "if", "for", "while", "import", "func", "ret",
                 "==", "!=", ">", ">=", "<", "<=", "&&", "||",
+                "+", "-", "*", "/", "%"
             }, new Type[] {
                 typeof(Core.Comment), typeof(Core.Def), typeof(Core.Del), typeof(Core.If), typeof(Core.For), typeof(Core.While), typeof(Core.Import), typeof(Core.Func), typeof(Core.Ret),
                 typeof(Logic.Equals), typeof(Logic.NotEquals), typeof(Logic.Greater), typeof(Logic.GreaterOrEquals), typeof(Logic.Less), typeof(Logic.LessOrEquals), typeof(Logic.And), typeof(Logic.Or),

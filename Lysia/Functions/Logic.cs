@@ -73,6 +73,7 @@ namespace Lysia.Functions
             public static string[] typeParameters = new string[] { "bool" };
             public static bool evaluateParameters = true;
 
+            public static dynamic Eval(Env env, List<dynamic> parameters) => parameters[0] || parameters[1];
         }
     }
 }

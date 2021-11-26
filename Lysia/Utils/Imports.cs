@@ -9,12 +9,12 @@ namespace Lysia.Utils
         public static Dictionary<string, Dictionary<string, Type>> imports = new Dictionary<string, Dictionary<string, Type>>()
         {
             { 
-                "IO", new Dictionary<string, Type>()
+                "io", new Dictionary<string, Type>()
                 {
-                    { "display", typeof(IO.Display) },
-                    { "input", typeof(IO.Input) }
-                } 
-            }    
+                    { "io:display", typeof(IO.Display) },
+                    { "io:input", typeof(IO.Input) }
+                }
+            },
             {
                 "env", new Dictionary<string, Type>()
                 {
