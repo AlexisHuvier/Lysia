@@ -18,6 +18,8 @@ Documentation : Coming Soon
   - Conditions with if
   - Loop with for and while
   - Import to import other lispy file or native module
+  - Function system with func
+  - Comments with #
 
 - Native modules (import <name>):
 
