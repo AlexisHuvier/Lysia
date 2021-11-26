@@ -50,7 +50,7 @@ namespace Lysia
             if (debug)
             {
                 Interpreter.DEBUG = true;
-                Print.PrintObject(obj);
+                Utils.Print.PrintObject(obj);
                 System.Console.WriteLine();
             }
             Interpreter.Eval(obj);

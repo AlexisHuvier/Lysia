@@ -47,8 +47,8 @@ namespace Lysia
                     {
                         if(DEBUG)
                         {
-                            Print.PrintObject(env.core_methods);
-                            Print.PrintObject(env.variables);
+                            Utils.Print.PrintObject(env.core_methods);
+                            Utils.Print.PrintObject(env.variables);
                         }
                         ShowError($"Unknown Identifier : {token}");
 

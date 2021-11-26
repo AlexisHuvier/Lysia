@@ -15,6 +15,13 @@ namespace Lysia.Utils
                     { "input", typeof(IO.Input) }
                 } 
             }    
+            {
+                "env", new Dictionary<string, Type>()
+                {
+                    { "env:exit", typeof(Functions.Environment.Exit) },
+                    { "env:print", typeof(Functions.Environment.Print) }
+                }
+            }
         };
 
         public static bool IsDefined(string name) => imports.ContainsKey(name);

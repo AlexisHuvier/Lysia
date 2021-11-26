@@ -22,6 +22,7 @@ Documentation : Coming Soon
 - Native modules (import <name>):
 
   - IO : Manage inputs and outputs (2 functions)
+  - env : Manage environment (2 functions)
 
 ## Changelog
 
