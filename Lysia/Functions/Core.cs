@@ -81,9 +81,19 @@ namespace Lysia.Functions
                         Interpreter.ShowError($"Identifier not defined : {tok}");
                     else
                     {
-                        if(parameters[1] is List<object> lists && lists.Count == 3 && lists[0] is Token t1 && t1.type == TokenType.INTEGER && lists[1] is Token t2 && t2.type == TokenType.INTEGER && lists[2] is Token t3 && t3.type == TokenType.INTEGER)
+                        if(parameters[1] is List<object> lists && lists.Count == 3)
                         {
-                            for(int i = Convert.ToInt32(t1.value); i < Convert.ToInt32(t2.value); i += Convert.ToInt32(t3.value)) {
+                            int[] ints = new int[] { 0, 0, 0 };
+                            for(int i = 0; i < 3; i++)
+                            {
+                                dynamic o = Interpreter.Eval(lists[i], env);
+                                if (o is int integer)
+                                    ints[i] = integer;
+                                else
+                                    Interpreter.ShowError($"Wrong Type of argument. Provided : {o} ({lists[i]}) - Expected : Integer - Procedure : {typeof(For)}");
+                            }
+
+                            for(int i = ints[0]; i < ints[1]; i += ints[2]) {
                                 env.variables[tok.value] = i;
                                 Interpreter.Eval(parameters[2], env);
                             }
