@@ -95,6 +95,24 @@ namespace Lysia.Functions
             }
         }
 
+        public class Ret
+        {
+            public static int[] nbParameters = new int[] { 1 };
+            public static string[][] typeParameters = new string[][] { };
+            public static bool evaluateParameters = true;
+
+            public static dynamic Eval(Env env, List<dynamic> parameters) => parameters[0];
+        }
+
+        public class Func
+        {
+            public static int[] nbParameters = new int[] { 2 };
+            public static string[][] typeParameters = new string[][] { };
+            public static bool evaluateParameters = false;
+
+            public static dynamic Eval(Env env, List<dynamic> parameters) => new Procedure(parameters[0], parameters[1]);
+        }
+
         public class Import
         {
             public static int[] nbParameters = new int[] { 1 };
