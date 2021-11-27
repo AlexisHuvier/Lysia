@@ -8,7 +8,7 @@ namespace Lysia.Functions
 {
     class Core
     {
-        public class Ret
+        public class TypeOf
         {
             public static int[] nbParameters = new int[] { 1 };
             public static string[][] typeParameters = new string[][] { };
@@ -16,11 +16,22 @@ namespace Lysia.Functions
 
             public static dynamic Eval(Env env, List<dynamic> parameters)
             {
-                return parameters[0];
+                if (parameters[0] is List<dynamic>)
+                    return "list";
+                else if (parameters[0] is int)
+                    return "int";
+                else if (parameters[0] is float)
+                    return "float";
+                else if (parameters[0] is bool)
+                    return "bool";
+                else if (parameters[0] is string)
+                    return "string";
+                else
+                    return parameters[0].GetType();
             }
         }
 
-        public class Func
+        public class Cast
         {
             public static int[] nbParameters = new int[] { 2 };
             public static string[][] typeParameters = new string[][] { };
@@ -28,7 +39,59 @@ namespace Lysia.Functions
 
             public static dynamic Eval(Env env, List<dynamic> parameters)
             {
-                return new Procedure(parameters[0], parameters[1]);
+                dynamic value = Interpreter.Eval(parameters[1], env);
+                if(parameters[0] is Token tok && tok.type == TokenType.IDENTIFIER)
+                {
+                    if(parameters[0].value == "int")
+                    {
+                        try
+                        {
+                            return Convert.ToInt32(value);
+                        }
+                        catch (FormatException)
+                        {
+                            Interpreter.ShowError($"Wrong Cast. Provided : {value} ({value.GetType()}) - Expected : int - Procedure : {typeof(Cast)}");
+                        }
+                    }
+                    else if(parameters[0].value == "float")
+                    {
+                        try
+                        {
+                            return Convert.ToSingle(value);
+                        }
+                        catch (FormatException)
+                        {
+                            Interpreter.ShowError($"Wrong Cast. Provided : {value} ({value.GetType()}) - Expected : float - Procedure : {typeof(Cast)}");
+                        }
+                    }
+                    else if(parameters[0].value == "string")
+                    {
+                        try
+                        {
+                            return Convert.ToString(value);
+                        }
+                        catch (FormatException)
+                        {
+                            Interpreter.ShowError($"Wrong Cast. Provided : {value} ({value.GetType()}) - Expected : string - Procedure : {typeof(Cast)}");
+                        }
+                    }
+                    else if (parameters[0].value == "bool")
+                    {
+                        try
+                        {
+                            return Convert.ToBoolean(value);
+                        }
+                        catch (FormatException)
+                        {
+                            Interpreter.ShowError($"Wrong Cast. Provided : {value} ({value.GetType()}) - Expected : bool - Procedure : {typeof(Cast)}");
+                        }
+                    }
+                    else
+                        Interpreter.ShowError($"Wrong Type. Provided : {parameters[0].value} - Expected : int, string, float or bool - Procedure : {typeof(Cast)}");
+                }
+                else
+                    Interpreter.ShowError($"Wrong Type of argument. Provided : {parameters[0]} - Expected : int, string, float or bool - Procedure : {typeof(Cast)}");
+                return null;
             }
         }
 

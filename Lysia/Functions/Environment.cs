@@ -5,6 +5,15 @@ namespace Lysia.Functions
 {
     class Environment
     {
+        public class Version
+        {
+            public static int[] nbParameters = new int[] { 0 };
+            public static string[][] typeParameters = new string[][] {};
+            public static bool evaluateParameters = true;
+
+            public static dynamic Eval(Env env, List<dynamic> parameters) => "1.0.0";
+        }
+
         public class Exit
         {
             public static int[] nbParameters = new int[] { 1 };

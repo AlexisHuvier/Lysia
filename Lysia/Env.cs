@@ -55,11 +55,11 @@ namespace Lysia
             Env env = new Env();
 
             env.AddCoreMethod(new string[] {
-                "#", "def", "del", "if", "for", "while", "import", "func", "ret",
+                "#", "def", "del", "if", "for", "while", "import", "func", "ret", "cast", "typeof",
                 "==", "!=", ">", ">=", "<", "<=", "&&", "||",
                 "+", "-", "*", "/", "%"
             }, new Type[] {
-                typeof(Core.Comment), typeof(Core.Def), typeof(Core.Del), typeof(Core.If), typeof(Core.For), typeof(Core.While), typeof(Core.Import), typeof(Core.Func), typeof(Core.Ret),
+                typeof(Core.Comment), typeof(Core.Def), typeof(Core.Del), typeof(Core.If), typeof(Core.For), typeof(Core.While), typeof(Core.Import), typeof(Core.Func), typeof(Core.Ret), typeof(Core.Cast), typeof(Core.TypeOf),
                 typeof(Logic.Equals), typeof(Logic.NotEquals), typeof(Logic.Greater), typeof(Logic.GreaterOrEquals), typeof(Logic.Less), typeof(Logic.LessOrEquals), typeof(Logic.And), typeof(Logic.Or),
                 typeof(Arithmetic.Add), typeof(Arithmetic.Sub), typeof(Arithmetic.Mul), typeof(Arithmetic.Div), typeof(Arithmetic.Mod)
             });

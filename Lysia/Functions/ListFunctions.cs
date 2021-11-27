@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Lysia.Functions
 {
@@ -197,6 +198,15 @@ namespace Lysia.Functions
                     l.Add(i);
                 return l;
             }
+        }
+
+        public class Repeat
+        {
+            public static int[] nbParameters = new int[] { 2 };
+            public static string[][] typeParameters = new string[][] { new string[] { "int" }, new string[] { } };
+            public static bool evaluateParameters = true;
+
+            public static dynamic Eval(Env env, List<dynamic> parameters) => new List<dynamic>(Enumerable.Repeat<dynamic>(parameters[1], parameters[0]));
         }
 
         public class ForEach

@@ -19,7 +19,8 @@ namespace Lysia.Utils
                 "env", new Dictionary<string, Type>()
                 {
                     { "env:exit", typeof(Functions.Environment.Exit) },
-                    { "env:print", typeof(Functions.Environment.Print) }
+                    { "env:print", typeof(Functions.Environment.Print) },
+                    { "env:version", typeof(Functions.Environment.Version) }
                 }
             },
             {
@@ -41,7 +42,8 @@ namespace Lysia.Utils
                     { "list:clear", typeof(ListFunctions.Clear) },
                     { "list:in", typeof(ListFunctions.In) },
                     { "list:foreach", typeof(ListFunctions.ForEach) },
-                    { "list:range", typeof(ListFunctions.Range) }
+                    { "list:range", typeof(ListFunctions.Range) },
+                    { "list:repeat", typeof(ListFunctions.Repeat) }
 
                 }
             }
