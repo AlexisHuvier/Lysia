@@ -8,7 +8,7 @@ namespace Lysia.Utils
     {
         public static Dictionary<string, Dictionary<string, Type>> imports = new Dictionary<string, Dictionary<string, Type>>()
         {
-            { 
+            {
                 "io", new Dictionary<string, Type>()
                 {
                     { "io:display", typeof(IO.Display) },
@@ -25,7 +25,24 @@ namespace Lysia.Utils
             {
                 "list", new Dictionary<string, Type>()
                 {
-                    { "list", typeof(ListFunctions.Create) }
+                    { "list", typeof(ListFunctions.Create) },
+                    { "list:join", typeof(ListFunctions.Join) },
+                    { "list:first", typeof(ListFunctions.First) },
+                    { "list:last", typeof(ListFunctions.Last) },
+                    { "list:get", typeof(ListFunctions.Get) },
+                    { "list:len", typeof(ListFunctions.Len) },
+                    { "list:append", typeof(ListFunctions.Append) },
+                    { "list:remove", typeof(ListFunctions.Remove) },
+                    { "list:removeall", typeof(ListFunctions.RemoveAll) },
+                    { "list:removeat", typeof(ListFunctions.RemoveAt) },
+                    { "list:insert", typeof(ListFunctions.Insert) },
+                    { "list:replace", typeof(ListFunctions.Replace) },
+                    { "list:reverse", typeof(ListFunctions.Reverse) },
+                    { "list:clear", typeof(ListFunctions.Clear) },
+                    { "list:in", typeof(ListFunctions.In) },
+                    { "list:foreach", typeof(ListFunctions.ForEach) },
+                    { "list:range", typeof(ListFunctions.Range) }
+
                 }
             }
         };
