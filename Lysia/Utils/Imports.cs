@@ -21,6 +21,12 @@ namespace Lysia.Utils
                     { "env:exit", typeof(Functions.Environment.Exit) },
                     { "env:print", typeof(Functions.Environment.Print) }
                 }
+            },
+            {
+                "list", new Dictionary<string, Type>()
+                {
+                    { "list", typeof(ListFunctions.Create) }
+                }
             }
         };
 
