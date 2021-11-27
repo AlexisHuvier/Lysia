@@ -88,7 +88,7 @@ namespace Lysia
                         else if (proced is Type proc)
                         {
                             int[] nbParameters = (int[])proc.GetField("nbParameters").GetValue(null);
-                            string[] typeParameters = (string[])proc.GetField("typeParameters").GetValue(null);
+                            string[][] typeParameters = (string[][])proc.GetField("typeParameters").GetValue(null);
                             bool evaluateParameters = (bool)proc.GetField("evaluateParameters").GetValue(null);
                             List<dynamic> vals = new List<dynamic>();
 
@@ -107,6 +107,24 @@ namespace Lysia
                                 {
                                     if(nbParameter == vals.Count)
                                     {
+                                        if (typeParameters.Length != 0)
+                                        {
+                                            for (int i = 0; i < nbParameter; i++)
+                                            {
+                                                bool validate2 = true;
+                                                foreach (string typeParameter in typeParameters[i])
+                                                {
+                                                    validate2 = false;
+                                                    if (VerifType(typeParameter, vals[i]))
+                                                    {
+                                                        validate2 = true;
+                                                        break;
+                                                    }
+                                                }
+                                                if (!validate2)
+                                                    ShowError($"Wrong Type of arguments. Provided : {string.Join(", ", vals.Select(val => val.GetType()))} - Expected : {string.Join(", ", typeParameters[i])} - Procedure : {proc}");
+                                            }
+                                        }
                                         validate = true;
                                         break;
                                     }    
@@ -114,24 +132,28 @@ namespace Lysia
                                 if(!validate)
                                     ShowError($"Wrong Number of arguments. Provided : {vals.Count} - Expected : {string.Join(", ", nbParameters)} - Procedure : {proc}");
                             }
-
-                            if (typeParameters.Length != 0)
+                            else
                             {
-                                foreach (dynamic val in vals)
+                                if (typeParameters.Length != 0)
                                 {
-                                    bool validate = false;
-                                    foreach (string typeParameter in typeParameters)
+                                    foreach (dynamic val in vals)
                                     {
-                                        if (VerifType(typeParameter, val))
+                                        bool validate = true;
+                                        foreach (string typeParameter in typeParameters[0])
                                         {
-                                            validate = true;
-                                            break;
+                                            validate = false;
+                                            if (VerifType(typeParameter, val))
+                                            {
+                                                validate = true;
+                                                break;
+                                            }
                                         }
+                                        if (!validate)
+                                            ShowError($"Wrong Type of arguments. Provided : {string.Join(", ", vals.Select(val => val.GetType()))} - Expected : {string.Join(", ", typeParameters[0])} - Procedure : {proc}");
                                     }
-                                    if (!validate)
-                                        ShowError($"Wrong Type of arguments. Provided : {string.Join(", ", vals.Select(val => val.GetType()))} - Expected : {string.Join(", ", typeParameters)} - Procedure : {proc}");
                                 }
                             }
+                            
                             return proc.GetMethod("Eval").Invoke(null, new object[] { env, vals });
                         }
                         else

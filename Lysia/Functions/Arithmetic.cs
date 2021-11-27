@@ -8,7 +8,7 @@ namespace Lysia.Functions
         public class Add
         {
             public static int[] nbParameters = new int[] { };
-            public static string[] typeParameters = new string[] { "int", "float", "string" };
+            public static string[][] typeParameters = new string[][] { new string[] { "int", "float", "string" } };
             public static bool evaluateParameters = true;
 
             public static dynamic Eval(Env env, List<dynamic> parameters) {
@@ -24,7 +24,7 @@ namespace Lysia.Functions
         public class Sub
         {
             public static int[] nbParameters = new int[] { };
-            public static string[] typeParameters = new string[] { "int", "float" };
+            public static string[][] typeParameters = new string[][] { new string[] { "int", "float" } };
             public static bool evaluateParameters = true;
 
             public static dynamic Eval(Env env, List<dynamic> parameters)
@@ -43,7 +43,7 @@ namespace Lysia.Functions
         public class Mul
         {
             public static int[] nbParameters = new int[] { };
-            public static string[] typeParameters = new string[] { "int", "float" };
+            public static string[][] typeParameters = new string[][] { new string[] { "int", "float" } };
             public static bool evaluateParameters = true;
 
             public static dynamic Eval(Env env, List<dynamic> parameters)
@@ -60,7 +60,7 @@ namespace Lysia.Functions
         public class Div
         {
             public static int[] nbParameters = new int[] { };
-            public static string[] typeParameters = new string[] { "int", "float" };
+            public static string[][] typeParameters = new string[][] { new string[] { "int", "float" } };
             public static bool evaluateParameters = true;
 
             public static dynamic Eval(Env env, List<dynamic> parameters)
@@ -77,7 +77,7 @@ namespace Lysia.Functions
         public class Mod
         {
             public static int[] nbParameters = new int[] { };
-            public static string[] typeParameters = new string[] { "int", "float" };
+            public static string[][] typeParameters = new string[][] { new string[] { "int", "float" } };
             public static bool evaluateParameters = true;
 
             public static dynamic Eval(Env env, List<dynamic> parameters)

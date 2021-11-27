@@ -8,7 +8,7 @@ namespace Lysia.Functions
         public class Exit
         {
             public static int[] nbParameters = new int[] { 1 };
-            public static string[] typeParameters = new string[] { "int" };
+            public static string[][] typeParameters = new string[][] { new string[] { "int" } };
             public static bool evaluateParameters = true;
 
             public static dynamic Eval(Env env, List<dynamic> parameters)
@@ -21,7 +21,7 @@ namespace Lysia.Functions
         public class Print
         {
             public static int[] nbParameters = new int[] { 0 };
-            public static string[] typeParameters = new string[] { };
+            public static string[][] typeParameters = new string[][] { };
             public static bool evaluateParameters = true;
 
             public static dynamic Eval(Env env, List<dynamic> parameters)
