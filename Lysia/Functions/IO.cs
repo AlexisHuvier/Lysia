@@ -26,7 +26,15 @@ namespace Lysia.Functions
 
             public static dynamic Eval(Env env, List<dynamic> parameters)
             {
-                Console.WriteLine(string.Join(" ", parameters));
+                string txt = "";
+                foreach(dynamic t in parameters)
+                {
+                    if (t is List<dynamic> list)
+                        txt += $"[{string.Join(", ", list)}] ";
+                    else
+                        txt += $"{t} ";
+                }
+                Console.WriteLine(txt);
                 return null;
             }
         }
