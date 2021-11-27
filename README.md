@@ -19,13 +19,14 @@ Documentation : Coming Soon
   - Loop with for and while
   - Import to import other lispy file or native module
   - Function system with func
+  - Cast and Type system with cast and typeof
   - Comments with #
 
 - Native modules (import <name>):
 
   - io : Manage inputs and outputs (2 functions)
-  - env : Manage environment (2 functions)
-  - list : Manage lists (17 functions)
+  - env : Manage environment (3 functions)
+  - list : Manage lists (18 functions)
 
 ## Changelog
 
