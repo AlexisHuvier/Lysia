@@ -17,7 +17,9 @@ namespace Lysia
 
         private static bool VerifType(string type, dynamic val)
         {
-            if (val is int nb)
+            if (val is List<dynamic> list)
+                return type == "list";
+            else if (val is int nb)
                 return type == "int";
             else if (val is float nb2)
                 return type == "float";
