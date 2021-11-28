@@ -7,6 +7,17 @@ namespace Lysia.Utils
 {
     class Print
     {
+        public static string GetDict(Dictionary<dynamic, dynamic> dict)
+        {
+            string txt = $"{{";
+            foreach (KeyValuePair<dynamic, dynamic> kvp in dict)
+                txt += $"{kvp.Key} => {kvp.Value}, ";
+            if (dict.Count > 0)
+                txt = txt[..^2];
+            txt += $"}}";
+            return txt;
+        }
+
         public static void PrintEnv(Env env)
         {
             Console.WriteLine("=> Core Methods :");

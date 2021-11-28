@@ -17,15 +17,17 @@ namespace Lysia
 
         private static bool VerifType(string type, dynamic val)
         {
-            if (val is List<dynamic> list)
+            if (val is Dictionary<dynamic, dynamic>)
+                return type == "dict";
+            else if (val is List<dynamic>)
                 return type == "list";
-            else if (val is int nb)
+            else if (val is int)
                 return type == "int";
-            else if (val is float nb2)
+            else if (val is float)
                 return type == "float";
-            else if (val is bool boolean)
+            else if (val is bool)
                 return type == "bool";
-            else if (val is string txt)
+            else if (val is string)
                 return type == "string";
             else
                 return false;

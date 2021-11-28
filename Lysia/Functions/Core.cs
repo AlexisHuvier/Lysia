@@ -16,7 +16,9 @@ namespace Lysia.Functions
 
             public static dynamic Eval(Env env, List<dynamic> parameters)
             {
-                if (parameters[0] is List<dynamic>)
+                if (parameters[0] is Dictionary<dynamic, dynamic>)
+                    return "dict";
+                else if (parameters[0] is List<dynamic>)
                     return "list";
                 else if (parameters[0] is int)
                     return "int";

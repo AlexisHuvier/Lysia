@@ -24,6 +24,18 @@ namespace Lysia.Utils
                 }
             },
             {
+                "dict", new Dictionary<string, Type>()
+                {
+                    { "dict", typeof(Dict.Create) },
+                    { "dict:haskey", typeof(Dict.HasKey) },
+                    { "dict:hasvalue", typeof(Dict.HasValue) },
+                    { "dict:get", typeof(Dict.Get) },
+                    { "dict:set", typeof(Dict.Set) },
+                    { "dict:values", typeof(Dict.Values) },
+                    { "dict:keys", typeof(Dict.Keys) }
+                }
+            },
+            {
                 "list", new Dictionary<string, Type>()
                 {
                     { "list", typeof(ListFunctions.Create) },

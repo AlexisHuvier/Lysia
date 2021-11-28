@@ -27,6 +27,7 @@ Documentation : Coming Soon
   - io : Manage inputs and outputs (2 functions)
   - env : Manage environment (3 functions)
   - list : Manage lists (18 functions)
+  - dict : Manage dicts (7 functions)
 
 ## Changelog
 

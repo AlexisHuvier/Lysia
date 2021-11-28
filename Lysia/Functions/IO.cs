@@ -29,7 +29,16 @@ namespace Lysia.Functions
                 string txt = "";
                 foreach(dynamic t in parameters)
                 {
-                    if (t is List<dynamic> list)
+                    if (t is Dictionary<dynamic, dynamic> dict)
+                    {
+                        txt += $"{{";
+                        foreach (KeyValuePair<dynamic, dynamic> kvp in dict)
+                            txt += $"{kvp.Key} => {kvp.Value}, ";
+                        if (dict.Count > 0)
+                            txt = txt[..^2];
+                        txt += $"}} ";
+                    }
+                    else if (t is List<dynamic> list)
                         txt += $"[{string.Join(", ", list)}] ";
                     else
                         txt += $"{t} ";
