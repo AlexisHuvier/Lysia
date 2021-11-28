@@ -24,6 +24,13 @@ namespace Lysia.Utils
                 }
             },
             {
+                "rand", new Dictionary<string, Type>()
+                {
+                    { "rand:randint", typeof(Rand.Randint) },
+                    { "rand:choice", typeof(Rand.Choice) }
+                }
+            },
+            {
                 "dict", new Dictionary<string, Type>()
                 {
                     { "dict", typeof(Dict.Create) },

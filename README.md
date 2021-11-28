@@ -28,6 +28,7 @@ Documentation : Coming Soon
   - env : Manage environment (3 functions)
   - list : Manage lists (18 functions)
   - dict : Manage dicts (7 functions)
+  - rand : Manage random (2 functions)
 
 ## Changelog
 
