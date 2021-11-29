@@ -12,7 +12,7 @@ namespace Lysia
         public static void ShowError(string message)
         {
             Console.WriteLine(message);
-            Environment.Exit(1);
+            // Environment.Exit(1);
         }
 
         private static bool VerifType(string type, dynamic val)

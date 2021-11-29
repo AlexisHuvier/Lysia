@@ -53,7 +53,15 @@ namespace Lysia
                 Utils.Print.PrintObject(obj);
                 System.Console.WriteLine();
             }
-            Interpreter.Eval(obj);
+            try
+            {
+                Interpreter.Eval(obj);
+            }
+            catch (System.Exception e)
+            {
+                if (Interpreter.DEBUG)
+                    System.Console.WriteLine(e);
+            }
 
         }
     }
