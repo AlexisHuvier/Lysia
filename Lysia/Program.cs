@@ -12,7 +12,27 @@ namespace Lysia
 
             if (args.Length != 1 && args.Length != 2)
             {
-                System.Console.WriteLine("Lysia.exe [-d] <lysia file>");
+                System.Console.Write("Lysia > ");
+                Env env = Env.GetStandartEnv();
+                while(System.Console.ReadLine() is string result)
+                {
+                    if (result == "(quit)")
+                        break;
+                    else
+                    {
+                        try
+                        {
+                            Interpreter.Eval(Parser.Parse(Lexer.Tokenize(result)), env);
+                        }
+                        catch (System.Exception e)
+                        {
+                            if (Interpreter.DEBUG)
+                                System.Console.WriteLine(e);
+                        }
+                    }
+                    System.Console.Write("Lysia > ");
+                }
+                System.Console.WriteLine("Bye.");
                 return;
             }
             else if (args.Length == 1)
