@@ -31,6 +31,18 @@ namespace Lysia.Utils
                 }
             },
             {
+                "path", new Dictionary<string, Type>()
+                {
+                    { "path:read", typeof(Path.Read) },
+                    { "path:readlines", typeof(Path.ReadLines) },
+                    { "path:write", typeof(Path.Write) },
+                    { "path:writelines", typeof(Path.WriteLines) },
+                    { "path:exists", typeof(Path.Exists) },
+                    { "path:create", typeof(Path.Create) },
+                    { "path:delete", typeof(Path.Delete) }
+                }
+            },
+            {
                 "dict", new Dictionary<string, Type>()
                 {
                     { "dict", typeof(Dict.Create) },

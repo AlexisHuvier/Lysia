@@ -131,7 +131,7 @@ namespace Lysia.Functions
                         foreach (KeyValuePair<string, Type> pair in Imports.Get(import))
                             env.core_methods.Add(pair.Key, pair.Value);
                     }
-                    else if (File.Exists(import) && Path.GetExtension(import) == ".lysia")
+                    else if (File.Exists(import) && System.IO.Path.GetExtension(import) == ".lysia")
                         Interpreter.Eval(Parser.Parse(Lexer.Tokenize(File.ReadAllText(import))), env);
                     else
                         Interpreter.ShowError($"Unknown Import : {import}");
