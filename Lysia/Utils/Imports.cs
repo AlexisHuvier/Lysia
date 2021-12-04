@@ -55,6 +55,33 @@ namespace Lysia.Utils
                 }
             },
             {
+                "math", new Dictionary<string, Type>()
+                {
+                    { "math:pi", typeof(Maths.Pi) },
+                    { "math:e", typeof(Maths.E) },
+                    { "math:fib", typeof(Maths.Fib) },
+                    { "math:min", typeof(Maths.Min) },
+                    { "math:max", typeof(Maths.Max) },
+                    { "math:pow", typeof(Maths.Pow) },
+                    { "math:sqrt", typeof(Maths.Sqrt) },
+                    { "math:abs", typeof(Maths.Abs) },
+                    { "math:ceil", typeof(Maths.Ceil) },
+                    { "math:acos", typeof(Maths.Acos) },
+                    { "math:acosh", typeof(Maths.Acosh) },
+                    { "math:asin", typeof(Maths.Asin) },
+                    { "math:asinh", typeof(Maths.Asinh) },
+                    { "math:atan", typeof(Maths.Atan) },
+                    { "math:atan2", typeof(Maths.Atan2) },
+                    { "math:atanh", typeof(Maths.Atanh) },
+                    { "math:cos", typeof(Maths.Cos) },
+                    { "math:cosh", typeof(Maths.Cosh) },
+                    { "math:sin", typeof(Maths.Sin) },
+                    { "math:sinh", typeof(Maths.Sinh) },
+                    { "math:tan", typeof(Maths.Tan) },
+                    { "math:tanh", typeof(Maths.Tanh) }
+                }
+            },
+            {
                 "list", new Dictionary<string, Type>()
                 {
                     { "list", typeof(ListFunctions.Create) },

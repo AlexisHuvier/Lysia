@@ -29,6 +29,7 @@ Documentation : Coming Soon
   - list : Manage lists (18 functions)
   - dict : Manage dicts (7 functions)
   - rand : Manage random (2 functions)
+  - math : Mathematics (21 functions)
 
 ## Changelog
 
