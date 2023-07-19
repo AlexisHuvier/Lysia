@@ -1,41 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using Lysia.Core;
 
+namespace Lysia.Utils;
 
-namespace Lysia.Utils
+public static class Print
 {
-    class Print
+     public static string GetDict(Dictionary<dynamic, dynamic> dict)
     {
-        public static string GetDict(Dictionary<dynamic, dynamic> dict)
-        {
-            string txt = $"{{";
-            foreach (KeyValuePair<dynamic, dynamic> kvp in dict)
-                txt += $"{kvp.Key} => {kvp.Value}, ";
-            if (dict.Count > 0)
-                txt = txt[..^2];
-            txt += $"}}";
-            return txt;
-        }
+        var txt = new StringBuilder("{");
+        foreach (var kvp in dict)
+            txt.Append($"{kvp.Key} => {kvp.Value}, ");
+        if (dict.Count > 0)
+            txt.Remove(txt.Length - 2, 2);
+        txt.Append('}');
+        return txt.ToString();
+    }
 
-        public static void PrintEnv(Env env)
-        {
-            Console.WriteLine("=> Core Methods :");
-            Console.WriteLine($"{string.Join(", ", env.core_methods.Select(a => $"{a.Key}: {a.Value}"))}");
-            Console.WriteLine("=> Variables :");
-            Console.WriteLine($"{string.Join(", ", env.variables.Select(a => $"{a.Key}: {a.Value}"))}");
-        }
+    public static void PrintEnv(Env env)
+    {
+        Console.WriteLine("=> Core Methods :");
+        Console.WriteLine($"{string.Join(", ", env.CoreMethods.Select(a => $"{a.Key}: {a.Value}"))}");
+        Console.WriteLine("=> Variables :");
+        Console.WriteLine($"{string.Join(", ", env.Variables.Select(a => $"{a.Key}: {a.Value}"))}");
+    }
 
-        public static void PrintObject(dynamic obj, int nb = 0)
+    public static void PrintObject(dynamic obj, int nb = 0)
+    {
+        switch (obj)
         {
-            if (obj is List<dynamic> list)
+            case List<dynamic> list:
             {
                 Console.WriteLine($"{string.Concat(Enumerable.Repeat(" ", nb))}===");
                 foreach (object obj2 in list)
                     PrintObject(obj2, nb + 1);
                 Console.WriteLine($"{string.Concat(Enumerable.Repeat(" ", nb))}===");
+                break;
             }
-            else if (obj is Dictionary<string, dynamic> dict)
+            case Dictionary<string, dynamic> dict:
             {
                 Console.WriteLine($"{string.Concat(Enumerable.Repeat(" ", nb))}===");
                 foreach ((dynamic obj2, dynamic obj3) in dict)
@@ -44,8 +48,9 @@ namespace Lysia.Utils
                     PrintObject(obj3, nb + 1);
                 }
                 Console.WriteLine($"{string.Concat(Enumerable.Repeat(" ", nb))}===");
+                break;
             }
-            else if (obj is Dictionary<string, Type> dict2)
+            case Dictionary<string, Type> dict2:
             {
                 Console.WriteLine($"{string.Concat(Enumerable.Repeat(" ", nb))}===");
                 foreach ((dynamic obj2, dynamic obj3) in dict2)
@@ -54,9 +59,11 @@ namespace Lysia.Utils
                     PrintObject(obj3, nb + 1);
                 }
                 Console.WriteLine($"{string.Concat(Enumerable.Repeat(" ", nb))}===");
+                break;
             }
-            else
+            default:
                 Console.WriteLine($"{string.Concat(Enumerable.Repeat(" ", nb))}{obj}");
+                break;
         }
     }
 }
