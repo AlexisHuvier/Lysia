@@ -1,88 +1,92 @@
 ﻿using System.IO;
+using Lysia.Core;
 
+namespace Lysia;
 
-namespace Lysia
+internal static class Program
 {
-    class Program
+    private static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            string file;
-            bool debug = false;
+        string file;
+        var debug = false;
 
-            if (args.Length != 1 && args.Length != 2)
+        if (args.Length != 1 && args.Length != 2)
+        {
+            System.Console.Write("Lysia > ");
+            var env = Env.GetStandardEnv();
+            while(System.Console.ReadLine() is { } result)
             {
-                System.Console.Write("Lysia > ");
-                Env env = Env.GetStandartEnv();
-                while(System.Console.ReadLine() is string result)
+                if (result == "(quit)")
+                    break;
+                if (result == "(debug)")
                 {
-                    if (result == "(quit)")
-                        break;
-                    else
-                    {
-                        try
-                        {
-                            Interpreter.Eval(Parser.Parse(Lexer.Tokenize(result)), env);
-                        }
-                        catch (System.Exception e)
-                        {
-                            if (Interpreter.DEBUG)
-                                System.Console.WriteLine(e);
-                        }
-                    }
+                    Interpreter.DEBUG = !Interpreter.DEBUG;
                     System.Console.Write("Lysia > ");
+                    continue;
                 }
-                System.Console.WriteLine("Bye.");
+                
+                try
+                {
+                    Interpreter.Eval(Parser.Parse(Lexer.Tokenize(result)), env);
+                }
+                catch (System.Exception e)
+                {
+                    if (Interpreter.DEBUG)
+                        System.Console.WriteLine(e);
+                }
+                System.Console.Write("Lysia > ");
+            }
+            System.Console.WriteLine("Bye.");
+            return;
+        }
+        
+        
+        if (args.Length == 1)
+        {
+            if (File.Exists($"{args[0]}.lysia"))
+                file = args[0];
+            else
+            {
+                System.Console.WriteLine($"Unknown File : {args[0]}");
                 return;
             }
-            else if (args.Length == 1)
+        }
+        else
+        {
+            if(args[0] == "-d")
             {
-                if (File.Exists($"{args[0]}.lysia"))
-                    file = args[0];
+                debug = true;
+                if (File.Exists($"{args[1]}.lysia"))
+                    file = args[1];
                 else
                 {
-                    System.Console.WriteLine($"Unknown File : {args[0]}");
+                    System.Console.WriteLine($"Unknown File : {args[1]}");
                     return;
                 }
             }
             else
             {
-                if(args[0] == "-d")
-                {
-                    debug = true;
-                    if (File.Exists($"{args[1]}.lysia"))
-                        file = args[1];
-                    else
-                    {
-                        System.Console.WriteLine($"Unknown File : {args[1]}");
-                        return;
-                    }
-                }
-                else
-                {
-                    System.Console.WriteLine($"Unkown Argument : {args[0]}");
-                    return;
-                }
+                System.Console.WriteLine($"Unkown Argument : {args[0]}");
+                return;
             }
+        }
 
-            string prog = File.ReadAllText($"{file}.lysia");
-            dynamic obj = Parser.Parse(Lexer.Tokenize(prog));
-            if (debug)
-            {
-                Interpreter.DEBUG = true;
-                Utils.Print.PrintObject(obj);
-                System.Console.WriteLine();
-            }
-            try
-            {
-                Interpreter.Eval(obj);
-            }
-            catch (System.Exception e)
-            {
-                if (Interpreter.DEBUG)
-                    System.Console.WriteLine(e);
-            }
-
+        var prog = File.ReadAllText($"{file}.lysia");
+        var obj = Parser.Parse(Lexer.Tokenize(prog));
+        if (debug)
+        {
+            Interpreter.DEBUG = true;
+            Utils.Print.PrintObject(obj);
+            System.Console.WriteLine();
+        }
+        try
+        {
+            Interpreter.Eval(obj);
+        }
+        catch (System.Exception e)
+        {
+            if (Interpreter.DEBUG)
+                System.Console.WriteLine(e);
         }
     }
 }

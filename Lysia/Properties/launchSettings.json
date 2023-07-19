@@ -1,6 +1,9 @@
 {
   "profiles": {
-    "Lysia": {
+    "Lysia REPL": {
+      "commandName": "Project"
+    },
+    "Lysia Prog": {
       "commandName": "Project",
       "commandLineArgs": "prog"
     }
