@@ -7,4 +7,15 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Lysia\Lysia.csproj" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <None Update="Examples\basic.lysia">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
