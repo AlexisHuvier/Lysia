@@ -19,19 +19,21 @@ public class Procedure
                 if (obj is Token.Token { Type: TokenType.Identifier } tok)
                     this.parameters.Add(tok.Value);
                 else
-                    Error.ShowError("WrongArgument", "Wrong Type of Argument.", obj);
+                    Error.ShowError("Wrong Type of Argument.", obj);
             }
 
             this.body = body;
         }
         else
-            Error.ShowError("WrongArgument", "Wrong Type of Argument.", parameters);
+            Error.ShowError("Wrong Type of Argument.", parameters);
     }
 
     public dynamic Eval(Env env, List<dynamic> @params)
     {
+        @params.RemoveAt(0);
+        
         if (@params.Count != parameters.Count)
-            Error.ShowError("WrongArgument", "Wrong Number of Arguments");
+            Error.ShowError("Wrong Number of Arguments");
         for (var i = 0; i < parameters.Count; i++)
         {
             if (!env.Variables.TryAdd(parameters[i], @params[i]))

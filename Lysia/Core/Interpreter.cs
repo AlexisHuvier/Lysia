@@ -24,7 +24,7 @@ public class Interpreter
                     {
                         if (DEBUG)
                             Print.PrintEnv(env);
-                        Error.ShowError("UnknownIdentifier", "Unknown Identifier", token);
+                        Error.ShowError("Unknown Identifier", token);
                     }
                     return tok;
                 case TokenType.Integer:
@@ -72,7 +72,7 @@ public class Interpreter
                 if (procedure is Function function)
                     return function.Eval(env, list);
                 
-                Error.ShowError("UnknownProcedure", "Unknown Procedure", tOp);
+                Error.ShowError("Unknown Procedure", tOp);
             }
         }
         return null;

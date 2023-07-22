@@ -29,7 +29,7 @@ public class Function
             values.AddRange(parameters.Skip(1));
         
         if(!CheckParameters(values))
-            Error.ShowError("WrongParameters", "Wrong Number or Types of Parameters", parameters[0]);
+            Error.ShowError("Wrong Number or Types of Parameters", parameters[0]);
 
         return values;
     }

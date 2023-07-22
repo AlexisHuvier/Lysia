@@ -19,14 +19,14 @@ public class Parser
             {
                 internalTokens.Add(Parse(tokens));
                 if (tokens.Count == 0)
-                    Error.ShowError("EOF", "Unexpected End of File", token);
+                    Error.ShowError("Unexpected End of File", token);
             }
             tokens.RemoveAt(0);
             return internalTokens;
         }
         
         if (token.Type == TokenType.CloseParen)
-            Error.ShowError("UnexpectedParen", "Unexpected )", token);
+            Error.ShowError("Unexpected )", token);
 
         return token;
     }
