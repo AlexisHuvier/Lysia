@@ -100,6 +100,63 @@ public class Core
         }
     }
 
+    public class For: Function
+    {
+        public For() : base(new[] { 3 }, Array.Empty<string[]>(), false)
+        {}
+
+        public override dynamic? Eval(Env env, List<dynamic> parameters)
+        {
+            var values = (List<dynamic>)base.Eval(env, parameters)!;
+            
+            if (values[0] is Token.Token { Type: TokenType.Identifier } token)
+            {
+                if(env.IsDefine(token.Value))
+                    Error.ShowError("Identifier already defined", values[0]);
+                else
+                {
+                    if (values[1] is List<dynamic> { Count: 3 } forValues)
+                    {
+                        var forInts = new[] { 0, 0, 0 };
+                        for (var i = 0; i < 3; i++)
+                        {
+                            var forInt = Interpreter.Eval(forValues[i], env);
+                            if (forInt is int forInteger)
+                                forInts[i] = forInteger;
+                            else
+                                Error.ShowError("Wrong Type of argument. Need List of 3 Integer", values[1]);
+                        }
+
+                        for (var i = forInts[0]; i < forInts[1]; i += forInts[2])
+                        {
+                            env.Variables[token.Value] = i;
+                            Interpreter.Eval(values[2], env);
+                        }
+                    }
+                    else
+                        Error.ShowError("Wrong Type of argument. Need List of 3 Integer", values[1]);
+                }
+            }
+            else
+                Error.ShowError("Expected Identifier", values[0]);
+            return null;
+            
+        }
+    }
+
+    public class Func : Function
+    {
+        public Func(): base(new [] { 2 }, Array.Empty<string[]>(), false)
+        {}
+
+        public override dynamic? Eval(Env env, List<dynamic> parameters)
+        {
+            var values = (List<dynamic>)base.Eval(env, parameters)!;
+
+            return new Procedure(values[0], values[1]);
+        }
+    }
+
     public class Import : Function
     {
         public Import() : base(new[] { 1 }, Array.Empty<string[]>(), false)
@@ -126,6 +183,40 @@ public class Core
                 Error.ShowError("Wait import or lysia file", parameters[0]);
 
             return null;
+        }
+    }
+
+    public class Ret : Function
+    {
+        public Ret() : base(new[] { 1 }, Array.Empty<string[]>(), true)
+        {}
+
+        public override dynamic? Eval(Env env, List<dynamic> parameters)
+        {
+            var values = (List<dynamic>)base.Eval(env, parameters)!;
+            return values[0];
+        }
+    }
+
+    public class TypeOf : Function
+    {
+        public TypeOf(): base(new [] { 1 }, Array.Empty<string[]>(), true) 
+        {}
+
+        public override dynamic? Eval(Env env, List<dynamic> parameters)
+        {
+            var values = (List<dynamic>)base.Eval(env, parameters)!;
+
+            return values[0] switch
+            {
+                Dictionary<dynamic, dynamic> => "dict",
+                List<dynamic> => "list",
+                int => "int",
+                float => "float",
+                bool => "bool",
+                string => "string",
+                _ => values[0].GetType().ToString()
+            };
         }
     }
 }

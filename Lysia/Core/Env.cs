@@ -45,10 +45,14 @@ public class Env
         
         env.AddCoreMethods(new []
         {
-            "#", "import"
+            "cast", "#", "def", "del",
+            "for", "func", "import", "ret",
+            "typeof"
         }, new Function[]
         {
-            new Modules.Core.Comment(), new Modules.Core.Import()
+            new Modules.Core.Cast(), new Modules.Core.Comment(), new Modules.Core.Def(), new Modules.Core.Del(), 
+            new Modules.Core.For(), new Modules.Core.Func(), new Modules.Core.Import(), new Modules.Core.Ret(),
+            new Modules.Core.TypeOf()
         });
         
         env.AddVariables(new []
