@@ -1,0 +1,10 @@
+﻿(
+    (import io)
+
+    (def test (func (a b) (
+        (io:display a)
+        (ret b)
+    )))
+    
+    (io:display "Retour de la fonction : " (test 1 20))
+)

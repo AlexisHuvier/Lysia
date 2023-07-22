@@ -1,0 +1,5 @@
+﻿(
+    (import io)
+    (for i (0 10 1) (io:display i))
+    (io:display "Fin de la boucle : " i)
+)

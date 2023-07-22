@@ -1,5 +1,10 @@
 ﻿(
-    (# Ceci est un commentaire !)
     (import io)
+    
+    (# Ceci est un commentaire !)
+    
     (io:display "Ceci est un test")
+    (def test 1)
+    (io:display "Voici test : " test)
+    (io:display "Type de test : " (typeof test))
 )
