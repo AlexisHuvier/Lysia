@@ -8,6 +8,7 @@ public class Lexer
 {
     public static List<Token.Token> Tokenize(string program)
     {
+        program = program.Replace("\r", "");
         var tokens = new List<Token.Token>();
         var line = 1;
         var column = 0;

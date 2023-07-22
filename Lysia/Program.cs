@@ -3,43 +3,12 @@ using Lysia.Core;
 
 namespace Lysia;
 
-internal static class Program
+public static class Program
 {
-    private static void Main(string[] args)
+    public static void RunFile(string[] args)
     {
         string file;
         var debug = false;
-
-        if (args.Length != 1 && args.Length != 2)
-        {
-            System.Console.Write("Lysia > ");
-            var env = Env.GetStandardEnv();
-            while(System.Console.ReadLine() is { } result)
-            {
-                if (result == "(quit)")
-                    break;
-                if (result == "(debug)")
-                {
-                    Interpreter.DEBUG = !Interpreter.DEBUG;
-                    System.Console.Write("Lysia > ");
-                    continue;
-                }
-                
-                try
-                {
-                    Interpreter.Eval(Parser.Parse(Lexer.Tokenize(result)), env);
-                }
-                catch (System.Exception e)
-                {
-                    if (Interpreter.DEBUG)
-                        System.Console.WriteLine(e);
-                }
-                System.Console.Write("Lysia > ");
-            }
-            System.Console.WriteLine("Bye.");
-            return;
-        }
-        
         
         if (args.Length == 1)
         {
@@ -88,5 +57,40 @@ internal static class Program
             if (Interpreter.DEBUG)
                 System.Console.WriteLine(e);
         }
+    }
+    
+    private static void Main(string[] args)
+    {
+        if (args.Length != 1 && args.Length != 2)
+        {
+            System.Console.Write("Lysia > ");
+            var env = Env.GetStandardEnv();
+            while(System.Console.ReadLine() is { } result)
+            {
+                if (result == "(quit)")
+                    break;
+                if (result == "(debug)")
+                {
+                    Interpreter.DEBUG = !Interpreter.DEBUG;
+                    System.Console.Write("Lysia > ");
+                    continue;
+                }
+                
+                try
+                {
+                    Interpreter.Eval(Parser.Parse(Lexer.Tokenize(result)), env);
+                }
+                catch (System.Exception e)
+                {
+                    if (Interpreter.DEBUG)
+                        System.Console.WriteLine(e);
+                }
+                System.Console.Write("Lysia > ");
+            }
+            System.Console.WriteLine("Bye.");
+            return;
+        }
+        
+        RunFile(args);
     }
 }

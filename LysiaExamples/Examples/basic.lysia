@@ -1,0 +1,5 @@
+﻿(
+    (# Ceci est un commentaire !)
+    (import io)
+    (io:display "Ceci est un test")
+)
