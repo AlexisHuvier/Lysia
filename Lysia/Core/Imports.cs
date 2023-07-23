@@ -16,7 +16,7 @@ public static class Imports
             }
         },
         {
-            "lysia", new Dictionary<string, Function>()
+            "lysia", new Dictionary<string, Function>
             {
                 { "lysia:version", new Modules.Lysia.Version() },
                 { "lysia:printenv", new Modules.Lysia.PrintEnv() },

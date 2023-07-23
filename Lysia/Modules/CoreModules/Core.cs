@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using Lysia.Core;
 using Lysia.Objects;
 using Lysia.Token;
@@ -176,6 +178,16 @@ public static class Core
                 }
                 else if (File.Exists(import) && Path.GetExtension(import) == ".lysia")
                     Interpreter.Eval(Parser.Parse(Lexer.Tokenize(File.ReadAllText(import))), env);
+                else if (File.Exists(Environment.ExpandEnvironmentVariables($"%appdata%/LysiaModules/{import}.dll")))
+                {
+                    var dll = Assembly.LoadFile(
+                        Environment.ExpandEnvironmentVariables($"%appdata%/LysiaModules/{import}.dll"));
+                    var imports = dll.GetTypes().FirstOrDefault(x => x.Name == "Imports");
+                    var field = imports?.GetField("ImportsList", BindingFlags.Public | BindingFlags.Static);
+                    var importsList = (Dictionary<string, dynamic>)(field?.GetValue(null) ?? new Dictionary<string, dynamic>());
+                    foreach (var function in importsList)
+                        env.CoreMethods.Add(function.Key, new ModuleFunction(function.Value));
+                }
                 else
                     Error.ShowError("Unknown Import", parameters[0]);
             }

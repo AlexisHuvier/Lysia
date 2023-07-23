@@ -18,5 +18,10 @@ internal static class Program
         Console.WriteLine("FUNC EXAMPLE");
         Console.WriteLine("=============");
         Lysia.Program.RunFile(new[] { "Examples/func" });
+        Console.WriteLine();
+        Console.WriteLine("=============");
+        Console.WriteLine("EXTERN MODULE EXAMPLE");
+        Console.WriteLine("=============");
+        Lysia.Program.RunFile(new[] { "Examples/externModule" });
     }
 }

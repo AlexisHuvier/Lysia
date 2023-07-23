@@ -1,0 +1,6 @@
+(
+    (import example)
+    (import io)
+    
+    (io:display "Appel de la fonction test : " (example:test "Print interne de la fonction test" "Appel réussi"))
+)
