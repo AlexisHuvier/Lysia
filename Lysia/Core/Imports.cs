@@ -11,7 +11,16 @@ public static class Imports
         {
             "io", new Dictionary<string, Function>
             {
-                { "io:display", new IO.Display() }
+                { "io:display", new IO.Display() },
+                { "io:input", new IO.Input() }
+            }
+        },
+        {
+            "lysia", new Dictionary<string, Function>()
+            {
+                { "lysia:version", new Modules.Lysia.Version() },
+                { "lysia:printenv", new Modules.Lysia.PrintEnv() },
+                { "lysia:exit", new Modules.Lysia.Exit() }
             }
         }
     };

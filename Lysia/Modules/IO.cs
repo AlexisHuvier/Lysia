@@ -6,7 +6,7 @@ using Lysia.Objects;
 
 namespace Lysia.Modules;
 
-public class IO
+public static class IO
 {
     public class Display: Function
     {
@@ -42,6 +42,20 @@ public class IO
             }
             Console.WriteLine(builder.ToString());
             return null;
+        }
+    }
+
+    public class Input: Function
+    {
+        public Input(): base(Array.Empty<int>(), Array.Empty<string[]>(), true)
+        {}
+
+        public override dynamic? Eval(Env env, List<dynamic> parameters)
+        {
+            var values = (List<dynamic>)base.Eval(env, parameters)!;
+            
+            Console.WriteLine(string.Join(" ", values));
+            return Console.ReadLine();
         }
     }
 }

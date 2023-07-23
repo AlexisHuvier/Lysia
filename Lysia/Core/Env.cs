@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Lysia.Modules.CoreModules;
 using Lysia.Objects;
 
 namespace Lysia.Core;
@@ -42,17 +43,22 @@ public class Env
     public static Env GetStandardEnv()
     {
         var env = new Env();
-        
-        env.AddCoreMethods(new []
+
+        env.AddCoreMethods(new[]
         {
-            "cast", "#", "def", "del",
-            "for", "func", "import", "ret",
-            "typeof"
+            "cast", "#", "def", "del", "for", "func", "import", "ret", "typeof",
+            "+", "/", "%", "*", "-",
+            "&&", "==", ">", ">=", "<", "<=", "!=", "||"
         }, new Function[]
         {
-            new Modules.Core.Cast(), new Modules.Core.Comment(), new Modules.Core.Def(), new Modules.Core.Del(), 
-            new Modules.Core.For(), new Modules.Core.Func(), new Modules.Core.Import(), new Modules.Core.Ret(),
-            new Modules.Core.TypeOf()
+            new Modules.CoreModules.Core.Cast(), new Modules.CoreModules.Core.Comment(),
+            new Modules.CoreModules.Core.Def(), new Modules.CoreModules.Core.Del(),
+            new Modules.CoreModules.Core.For(), new Modules.CoreModules.Core.Func(),
+            new Modules.CoreModules.Core.Import(), new Modules.CoreModules.Core.Ret(),
+            new Modules.CoreModules.Core.TypeOf(),
+            new Arithmetic.Add(), new Arithmetic.Div(), new Arithmetic.Mod(), new Arithmetic.Mul(), new Arithmetic.Sub(),
+            new Logic.And(), new Logic.Equals(), new Logic.Greater(), new Logic.GreaterOrEquals(), new Logic.Less(), 
+            new Logic.LessOrEquals(), new Logic.NotEquals(), new Logic.Or()
         });
         
         env.AddVariables(new []

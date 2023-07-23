@@ -5,9 +5,9 @@ using Lysia.Core;
 using Lysia.Objects;
 using Lysia.Token;
 
-namespace Lysia.Modules;
+namespace Lysia.Modules.CoreModules;
 
-public class Core
+public static class Core
 {
     public class Cast : Function
     {
