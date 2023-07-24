@@ -16,6 +16,18 @@ public static class Imports
             }
         },
         {
+            "io:file", new Dictionary<string, Function>
+            {
+                { "io:file:create", new IOFile.Create() },
+                { "io:file:delete", new IOFile.Delete() },
+                { "io:file:exists", new IOFile.Exists() },
+                { "io:file:read", new IOFile.Read() },
+                { "io:file:readlines", new IOFile.ReadLines() },
+                { "io:file:write", new IOFile.Write() },
+                { "io:file:writelines", new IOFile.WriteLines() }
+            }
+        },
+        {
             "lysia", new Dictionary<string, Function>
             {
                 { "lysia:version", new Modules.Lysia.Version() },

@@ -1,0 +1,7 @@
+﻿(
+    (import io)
+    (import io:file)
+    
+    (io:display "Contenu du fichier basic.lysia :")
+    (io:display (io:file:read "Examples/basic.lysia"))
+)
