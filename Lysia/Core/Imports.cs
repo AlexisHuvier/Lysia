@@ -11,20 +11,20 @@ public static class Imports
         {
             "io", new Dictionary<string, Function>
             {
-                { "io:display", new IO.Display() },
-                { "io:input", new IO.Input() }
+                { "io:display", new Io.Display() },
+                { "io:input", new Io.Input() }
             }
         },
         {
             "io:file", new Dictionary<string, Function>
             {
-                { "io:file:create", new IOFile.Create() },
-                { "io:file:delete", new IOFile.Delete() },
-                { "io:file:exists", new IOFile.Exists() },
-                { "io:file:read", new IOFile.Read() },
-                { "io:file:readlines", new IOFile.ReadLines() },
-                { "io:file:write", new IOFile.Write() },
-                { "io:file:writelines", new IOFile.WriteLines() }
+                { "io:file:create", new IoFile.Create() },
+                { "io:file:delete", new IoFile.Delete() },
+                { "io:file:exists", new IoFile.Exists() },
+                { "io:file:read", new IoFile.Read() },
+                { "io:file:readlines", new IoFile.ReadLines() },
+                { "io:file:write", new IoFile.Write() },
+                { "io:file:writelines", new IoFile.WriteLines() }
             }
         },
         {

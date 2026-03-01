@@ -44,13 +44,11 @@ public class Env
     {
         var env = new Env();
 
-        env.AddCoreMethods(new[]
-        {
+        env.AddCoreMethods([
             "cast", "#", "def", "del", "for", "func", "import", "ret", "typeof",
             "+", "/", "%", "*", "-",
             "&&", "==", ">", ">=", "<", "<=", "!=", "||"
-        }, new Function[]
-        {
+        ], [
             new Modules.CoreModules.Core.Cast(), new Modules.CoreModules.Core.Comment(),
             new Modules.CoreModules.Core.Def(), new Modules.CoreModules.Core.Del(),
             new Modules.CoreModules.Core.For(), new Modules.CoreModules.Core.Func(),
@@ -59,15 +57,9 @@ public class Env
             new Arithmetic.Add(), new Arithmetic.Div(), new Arithmetic.Mod(), new Arithmetic.Mul(), new Arithmetic.Sub(),
             new Logic.And(), new Logic.Equals(), new Logic.Greater(), new Logic.GreaterOrEquals(), new Logic.Less(), 
             new Logic.LessOrEquals(), new Logic.NotEquals(), new Logic.Or()
-        });
+        ]);
         
-        env.AddVariables(new []
-        {
-            "true", "false"
-        }, new dynamic[]
-        {
-            true, false
-        });
+        env.AddVariables([ "true", "false"  ], [ true, false ]);
 
         return env;
     }

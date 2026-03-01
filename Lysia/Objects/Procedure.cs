@@ -6,23 +6,23 @@ namespace Lysia.Objects;
 
 public class Procedure
 {
-    public readonly List<string> parameters = new();
-    public readonly dynamic body = "";
+    public readonly List<string> Parameters = [];
+    public readonly dynamic Body = "";
 
     public Procedure(dynamic parameters, dynamic body)
     {
         if (parameters is List<dynamic> list)
         {
-            this.parameters = new List<string>();
+            Parameters = [];
             foreach (var obj in list)
             {
                 if (obj is Token.Token { Type: TokenType.Identifier } tok)
-                    this.parameters.Add(tok.Value);
+                    Parameters.Add(tok.Value);
                 else
                     Error.ShowError("Wrong Type of Argument.", obj);
             }
 
-            this.body = body;
+            Body = body;
         }
         else
             Error.ShowError("Wrong Type of Argument.", parameters);
@@ -32,13 +32,13 @@ public class Procedure
     {
         @params.RemoveAt(0);
         
-        if (@params.Count != parameters.Count)
+        if (@params.Count != Parameters.Count)
             Error.ShowError("Wrong Number of Arguments");
-        for (var i = 0; i < parameters.Count; i++)
+        for (var i = 0; i < Parameters.Count; i++)
         {
-            if (!env.Variables.TryAdd(parameters[i], @params[i]))
-                env.Variables[parameters[i]] = @params[i];
+            if (!env.Variables.TryAdd(Parameters[i], @params[i]))
+                env.Variables[Parameters[i]] = @params[i];
         }
-        return Interpreter.Eval(body, env);
+        return Interpreter.Eval(Body, env);
     }
 }

@@ -1,24 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Lysia.Core;
 
 namespace Lysia.Utils;
 
 public static class Print
 {
-     public static string GetDict(Dictionary<dynamic, dynamic> dict)
-    {
-        var txt = new StringBuilder("{");
-        foreach (var kvp in dict)
-            txt.Append($"{kvp.Key} => {kvp.Value}, ");
-        if (dict.Count > 0)
-            txt.Remove(txt.Length - 2, 2);
-        txt.Append('}');
-        return txt.ToString();
-    }
-
     public static void PrintEnv(Env env)
     {
         Console.WriteLine("=> Core Methods :");
@@ -42,7 +30,7 @@ public static class Print
             case Dictionary<string, dynamic> dict:
             {
                 Console.WriteLine($"{string.Concat(Enumerable.Repeat(" ", nb))}===");
-                foreach ((dynamic obj2, dynamic obj3) in dict)
+                foreach ((dynamic obj2, var obj3) in dict)
                 {
                     Console.WriteLine($"{string.Concat(Enumerable.Repeat(" ", nb))}{obj2} =>");
                     PrintObject(obj3, nb + 1);

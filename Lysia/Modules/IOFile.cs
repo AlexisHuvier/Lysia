@@ -5,13 +5,10 @@ using Lysia.Objects;
 
 namespace Lysia.Modules;
 
-public static class IOFile
+public static class IoFile
 {
-    public class Create: Function
+    public class Create() : Function([1], [["string"]], true)
     {
-        public Create() : base(new[] { 1 }, new []{ new []{"string"}}, true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -19,11 +16,8 @@ public static class IOFile
         }
     }
     
-    public class Delete: Function
+    public class Delete() : Function([1], [["string"]], true)
     {
-        public Delete() : base(new[] { 1 }, new []{ new []{"string"}}, true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -31,11 +25,8 @@ public static class IOFile
         }
     }
     
-    public class Exists: Function
+    public class Exists() : Function([1], [["string"]], true)
     {
-        public Exists() : base(new[] { 1 }, new []{ new []{"string"}}, true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -43,11 +34,8 @@ public static class IOFile
         }
     }
     
-    public class Read : Function
+    public class Read() : Function([1], [["string"]], true)
     {
-        public Read(): base(new [] { 1 }, new [] { new [] { "string" } }, true) 
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -55,22 +43,16 @@ public static class IOFile
         }
     }
 
-    public class ReadLines : Function
+    public class ReadLines() : Function([1], [["string"]], true)
     {
-        public ReadLines(): base(new []{ 1 }, new []{ new []{"string"}}, true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
             return File.ReadAllLines(values[0]);
         }
     }
-    public class Write : Function
+    public class Write() : Function([2], [["string"], ["string"]], true)
     {
-        public Write(): base(new [] { 2 }, new [] { new [] { "string" }, new []{ "string" } }, true) 
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -78,11 +60,8 @@ public static class IOFile
         }
     }
 
-    public class WriteLines : Function
+    public class WriteLines() : Function([2], [["string"], ["string"]], true)
     {
-        public WriteLines(): base(new [] { 2 }, new [] { new [] { "string" }, new []{ "string" } }, true) 
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;

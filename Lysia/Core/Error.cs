@@ -2,7 +2,7 @@
 
 namespace Lysia.Core;
 
-public class Error
+public static class Error
 {
     public static void ShowError(string message, Token.Token? token = null, bool stop = true)
     {

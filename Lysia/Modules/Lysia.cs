@@ -8,11 +8,8 @@ namespace Lysia.Modules;
 
 public static class Lysia
 {
-    public class Exit : Function
+    public class Exit() : Function([1], [["int"]], true)
     {
-        public Exit(): base(new []{ 1 }, new []{ new []{ "int" } }, true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -21,11 +18,8 @@ public static class Lysia
         }
     }
 
-    public class PrintEnv : Function
+    public class PrintEnv() : Function([0], [], true)
     {
-        public PrintEnv(): base(new []{ 0 }, Array.Empty<string[]>(), true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             Print.PrintEnv(env);
@@ -33,11 +27,8 @@ public static class Lysia
         }
     }
     
-    public class Version: Function
+    public class Version() : Function([0], [], true)
     {
-        public Version(): base(new []{ 0 }, Array.Empty<string[]>(), true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters) => "1.0.0";
     }
 }

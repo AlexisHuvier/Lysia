@@ -11,58 +11,47 @@ namespace Lysia.Modules.CoreModules;
 
 public static class Core
 {
-    public class Cast : Function
+    public class Cast() : Function([2], [], false)
     {
-        public Cast(): base(new []{ 2 }, Array.Empty<string[]>(), false)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
             
             var value = Interpreter.Eval(values[1], env);
-            if (values[0] is Token.Token { Type: TokenType.Identifier } tok)
+            if (values[0] is not Token.Token { Type: TokenType.Identifier } tok) return null;
+            
+            switch (tok.Value)
             {
-                switch (tok.Value)
-                {
-                    case "int":
-                        if (int.TryParse(value, out int integer))
-                            return integer;
-                        Error.ShowError("Cannot be int", values[1]);
-                        break;
-                    case "float":
-                        if (float.TryParse(value, out float single))
-                            return single;
-                        Error.ShowError("Cannot be float", values[1]);
-                        break;
-                    case "string":
-                        return value.ToString();
-                    case "bool":
-                        if (bool.TryParse(value, out bool boolean))
-                            return boolean;
-                        Error.ShowError("Cannot be boolean", values[1]);
-                        break;
-                    default:
-                        Error.ShowError("Unknown Type", values[0]);
-                        break;
-                }
+                case "int":
+                    if (int.TryParse(value, out int integer))
+                        return integer;
+                    Error.ShowError("Cannot be int", values[1]);
+                    break;
+                case "float":
+                    if (float.TryParse(value, out float single))
+                        return single;
+                    Error.ShowError("Cannot be float", values[1]);
+                    break;
+                case "string":
+                    return value.ToString();
+                case "bool":
+                    if (bool.TryParse(value, out bool boolean))
+                        return boolean;
+                    Error.ShowError("Cannot be boolean", values[1]);
+                    break;
+                default:
+                    Error.ShowError("Unknown Type", values[0]);
+                    break;
             }
 
             return null;
         }
     }
     
-    public class Comment : Function
-    {
-        public Comment() : base(Array.Empty<int>(), Array.Empty<string[]>(), false)
-        {}
-    }
+    public class Comment() : Function([], [], false);
 
-    public class Def : Function
+    public class Def() : Function([2], [], false)
     {
-        public Def(): base(new []{ 2 }, Array.Empty<string[]>(), false)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -76,11 +65,8 @@ public static class Core
         }
     }
 
-    public class Del : Function
+    public class Del() : Function([1], [], false)
     {
-        public Del(): base(new [] { 1 }, Array.Empty<string[]>(), false)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -102,11 +88,8 @@ public static class Core
         }
     }
 
-    public class For: Function
+    public class For() : Function([3], [], false)
     {
-        public For() : base(new[] { 3 }, Array.Empty<string[]>(), false)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -146,11 +129,8 @@ public static class Core
         }
     }
 
-    public class Func : Function
+    public class Func() : Function([2], [], false)
     {
-        public Func(): base(new [] { 2 }, Array.Empty<string[]>(), false)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -159,11 +139,8 @@ public static class Core
         }
     }
 
-    public class Import : Function
+    public class Import() : Function([1], [], false)
     {
-        public Import() : base(new[] { 1 }, Array.Empty<string[]>(), false)
-        { }
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -198,11 +175,8 @@ public static class Core
         }
     }
 
-    public class Ret : Function
+    public class Ret() : Function([1], [], true)
     {
-        public Ret() : base(new[] { 1 }, Array.Empty<string[]>(), true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -210,11 +184,8 @@ public static class Core
         }
     }
 
-    public class TypeOf : Function
+    public class TypeOf() : Function([1], [], true)
     {
-        public TypeOf(): base(new [] { 1 }, Array.Empty<string[]>(), true) 
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;

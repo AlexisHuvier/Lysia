@@ -3,19 +3,15 @@ using Lysia.Core;
 
 namespace Lysia.Objects;
 
-public class ModuleFunction: Function
-{
-    private readonly dynamic Function;
-
-    public ModuleFunction(dynamic function) : base((int[])function.NbParameters, (string[][])function.TypeParameters,
-        (bool)function.EvaluateParameter)
-    {
-        Function = function;
-    }
-
+public class ModuleFunction(dynamic function) : Function(
+    (int[])function.NbParameters,
+    (string[][])function.TypeParameters,
+    (bool)function.EvaluateParameter
+    )
+{ 
     public override dynamic? Eval(Env env, List<dynamic> parameters)
     {
         var values = (List<dynamic>)base.Eval(env, parameters)!;
-        return Function.Eval(values);
+        return function.Eval(values);
     }
 }

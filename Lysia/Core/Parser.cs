@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Lysia.Token;
 
 namespace Lysia.Core;
 
-public class Parser
+public static class Parser
 {
     public static dynamic Parse(List<Token.Token> tokens)
     {
@@ -12,21 +13,31 @@ public class Parser
 
         var token = tokens[0];
         tokens.RemoveAt(0);
-        if (token.Type == TokenType.OpenParen)
+        switch (token.Type)
         {
-            var internalTokens = new List<dynamic>();
-            while (tokens[0].Type != TokenType.CloseParen)
+            case TokenType.OpenParen:
             {
-                internalTokens.Add(Parse(tokens));
-                if (tokens.Count == 0)
-                    Error.ShowError("Unexpected End of File", token);
+                var internalTokens = new List<dynamic>();
+                while (tokens[0].Type != TokenType.CloseParen)
+                {
+                    internalTokens.Add(Parse(tokens));
+                    if (tokens.Count == 0)
+                        Error.ShowError("Unexpected End of File", token);
+                }
+                tokens.RemoveAt(0);
+                return internalTokens;
             }
-            tokens.RemoveAt(0);
-            return internalTokens;
+            case TokenType.CloseParen:
+                Error.ShowError("Unexpected )", token);
+                break;
+            case TokenType.Identifier:
+            case TokenType.Integer:
+            case TokenType.Float:
+            case TokenType.String:
+            case TokenType.Unknown:
+            default:
+                break;
         }
-        
-        if (token.Type == TokenType.CloseParen)
-            Error.ShowError("Unexpected )", token);
 
         return token;
     }

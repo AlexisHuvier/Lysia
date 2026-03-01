@@ -4,7 +4,7 @@ using Lysia.Utils;
 
 namespace Lysia.Core;
 
-public class Lexer
+public static class Lexer
 {
     public static List<Token.Token> Tokenize(string program)
     {

@@ -7,11 +7,8 @@ namespace Lysia.Modules.CoreModules;
 
 public static class Logic
 {
-    public class And : Function
+    public class And() : Function([2], [["bool"], ["bool"]], true)
     {
-        public And(): base(new []{ 2 }, new []{ new []{ "bool" }, new []{ "bool" } }, true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -19,11 +16,8 @@ public static class Logic
         }
     }
     
-    public new class Equals : Function
+    public new class Equals() : Function([2], [], true)
     {
-        public Equals(): base(new []{ 2 }, Array.Empty<string[]>(), true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -31,11 +25,8 @@ public static class Logic
         }
     }
     
-    public class Greater : Function
+    public class Greater() : Function([2], [], true)
     {
-        public Greater(): base(new []{ 2 }, Array.Empty<string[]>(), true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -43,11 +34,8 @@ public static class Logic
         }
     }
     
-    public class GreaterOrEquals : Function
+    public class GreaterOrEquals() : Function([2], [], true)
     {
-        public GreaterOrEquals(): base(new []{ 2 }, Array.Empty<string[]>(), true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -55,11 +43,8 @@ public static class Logic
         }
     }
     
-    public class Less : Function
+    public class Less() : Function([2], [], true)
     {
-        public Less(): base(new []{ 2 }, Array.Empty<string[]>(), true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -67,11 +52,8 @@ public static class Logic
         }
     }
     
-    public class LessOrEquals : Function
+    public class LessOrEquals() : Function([2], [], true)
     {
-        public LessOrEquals(): base(new []{ 2 }, Array.Empty<string[]>(), true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -79,11 +61,8 @@ public static class Logic
         }
     }
     
-    public class NotEquals : Function
+    public class NotEquals() : Function([2], [], true)
     {
-        public NotEquals(): base(new []{ 2 }, Array.Empty<string[]>(), true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -91,11 +70,8 @@ public static class Logic
         }
     }
     
-    public class Or : Function
+    public class Or() : Function([2], [["bool"], ["bool"]], true)
     {
-        public Or(): base(new []{ 2 }, new []{ new []{ "bool" }, new []{ "bool" } }, true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;

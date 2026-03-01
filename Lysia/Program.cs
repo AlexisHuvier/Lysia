@@ -44,7 +44,7 @@ public static class Program
         var obj = Parser.Parse(Lexer.Tokenize(prog));
         if (debug)
         {
-            Interpreter.DEBUG = true;
+            Interpreter.Debug = true;
             Utils.Print.PrintObject(obj);
             System.Console.WriteLine();
         }
@@ -54,7 +54,7 @@ public static class Program
         }
         catch (System.Exception e)
         {
-            if (Interpreter.DEBUG)
+            if (Interpreter.Debug)
                 System.Console.WriteLine(e);
         }
     }
@@ -63,34 +63,39 @@ public static class Program
     {
         if (args.Length != 1 && args.Length != 2)
         {
-            System.Console.Write("Lysia > ");
-            var env = Env.GetStandardEnv();
-            while(System.Console.ReadLine() is { } result)
-            {
-                if (result == "(quit)")
-                    break;
-                if (result == "(debug)")
-                {
-                    Interpreter.DEBUG = !Interpreter.DEBUG;
-                    System.Console.Write("Lysia > ");
-                    continue;
-                }
-                
-                try
-                {
-                    Interpreter.Eval(Parser.Parse(Lexer.Tokenize(result)), env);
-                }
-                catch (System.Exception e)
-                {
-                    if (Interpreter.DEBUG)
-                        System.Console.WriteLine(e);
-                }
-                System.Console.Write("Lysia > ");
-            }
-            System.Console.WriteLine("Bye.");
+            RunInteractiveSession();
             return;
         }
         
         RunFile(args);
+    }
+
+    private static void RunInteractiveSession()
+    {
+        System.Console.Write("Lysia > ");
+        var env = Env.GetStandardEnv();
+        while(System.Console.ReadLine() is { } result)
+        {
+            if (result == "(quit)")
+                break;
+            if (result == "(debug)")
+            {
+                Interpreter.Debug = !Interpreter.Debug;
+                System.Console.Write("Lysia > ");
+                continue;
+            }
+                
+            try
+            {
+                Interpreter.Eval(Parser.Parse(Lexer.Tokenize(result)), env);
+            }
+            catch (System.Exception e)
+            {
+                if (Interpreter.Debug)
+                    System.Console.WriteLine(e);
+            }
+            System.Console.Write("Lysia > ");
+        }
+        System.Console.WriteLine("Bye.");
     }
 }

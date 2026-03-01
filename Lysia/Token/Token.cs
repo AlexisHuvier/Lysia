@@ -1,3 +1,5 @@
-﻿namespace Lysia.Token;
+﻿using JetBrains.Annotations;
 
-public record Token(string Value, TokenType Type, int Line, int Column);
+namespace Lysia.Token;
+
+public record Token(string Value, TokenType Type, [UsedImplicitly] int Line, [UsedImplicitly] int Column);

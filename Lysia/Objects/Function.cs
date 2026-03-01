@@ -5,24 +5,17 @@ using Lysia.Utils;
 
 namespace Lysia.Objects;
 
-public class Function
+public class Function(int[] nbParameters, string[][] typeParameters, bool evaluateParameter)
 {
-    public readonly int[] nbParameters;
-    public readonly string[][] typeParameters;
-    public readonly bool evaluateParameter;
-
-    public Function(int[] nbParameters, string[][] typeParameters, bool evaluateParameter)
-    {
-        this.nbParameters = nbParameters;
-        this.typeParameters = typeParameters;
-        this.evaluateParameter = evaluateParameter;
-    }
+    public readonly int[] NbParameters = nbParameters;
+    public readonly string[][] TypeParameters = typeParameters;
+    public readonly bool EvaluateParameter = evaluateParameter;
 
     public virtual dynamic? Eval(Env env, List<dynamic> parameters)
     {
         var values = new List<dynamic>();
         
-        if(evaluateParameter)
+        if(EvaluateParameter)
             for(var i = 1; i < parameters.Count; i++)
                 values.Add(Interpreter.Eval(parameters[i], env));
         else
@@ -36,57 +29,50 @@ public class Function
 
     public bool CheckParameters(List<dynamic> values)
     {
-        if (nbParameters.Length != 0)
+        if (NbParameters.Length != 0)
         {
-            foreach (var nbParameter in nbParameters)
+            foreach (var nbParameter in NbParameters)
             {
-                if (nbParameter == values.Count)
+                if (nbParameter != values.Count) continue;
+                if (TypeParameters.Length == 0) return true;
+                    
+                for (var i = 0; i < nbParameter; i++)
                 {
-                    if (typeParameters.Length != 0)
+                    var validate = true;
+                    foreach (var type in TypeParameters[i])
                     {
-                        for (var i = 0; i < nbParameter; i++)
-                        {
-                            var validate = true;
-                            foreach (var type in typeParameters[i])
-                            {
-                                validate = false;
-                                if (Extensions.VerifType(type, values[i]))
-                                {
-                                    validate = true;
-                                    break;
-                                }
-                            }
-
-                            if (!validate)
-                                return false;
-                        }
+                        validate = false;
+                        if (!Extensions.VerifType(type, values[i])) continue;
+                        
+                        validate = true;
+                        break;
                     }
 
-                    return true;
+                    if (!validate)
+                        return false;
                 }
+
+                return true;
             }
 
         }
-        else if(typeParameters.Length != 0)
+        else if(TypeParameters.Length != 0)
         {
             foreach (var value in values)
             {
                 var validate = true;
-                foreach (var type in typeParameters[0])
+                foreach (var type in TypeParameters[0])
                 {
                     validate = false;
-                    if (Extensions.VerifType(type, value))
-                    {
-                        validate = true;
-                        break;
-                    }
+                    if (!Extensions.VerifType(type, value)) continue;
+                    
+                    validate = true;
+                    break;
                 }
 
                 if (!validate)
                     return false;
             }
-
-            return true;
         }
 
         return true;

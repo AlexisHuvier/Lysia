@@ -8,11 +8,8 @@ namespace Lysia.Modules.CoreModules;
 
 public static class Arithmetic
 {
-    public class Add : Function
+    public class Add() : Function([], [["int", "float", "string"]], true)
     {
-        public Add() : base(Array.Empty<int>(), new[] { new[] { "int", "float", "string" } }, true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -26,11 +23,8 @@ public static class Arithmetic
         }
     }
 
-    public class Div : Function
+    public class Div() : Function([], [["int", "float"]], true)
     {
-        public Div(): base(Array.Empty<int>(), new[] { new[] { "int", "float" } }, true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -45,11 +39,8 @@ public static class Arithmetic
         }
     }
 
-    public class Mod : Function
+    public class Mod() : Function([], [["int", "float"]], true)
     {
-        public Mod(): base(Array.Empty<int>(), new[] { new[] { "int", "float" } }, true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -64,11 +55,8 @@ public static class Arithmetic
         }
     }
 
-    public class Mul : Function
+    public class Mul() : Function([], [["int", "float"]], true)
     {
-        public Mul(): base(Array.Empty<int>(), new[] { new[] { "int", "float" } }, true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
@@ -83,11 +71,8 @@ public static class Arithmetic
         }
     }
 
-    public class Sub : Function
+    public class Sub() : Function([], [["int", "float"]], true)
     {
-        public Sub(): base(Array.Empty<int>(), new[] { new[] { "int", "float" } }, true)
-        {}
-
         public override dynamic? Eval(Env env, List<dynamic> parameters)
         {
             var values = (List<dynamic>)base.Eval(env, parameters)!;
