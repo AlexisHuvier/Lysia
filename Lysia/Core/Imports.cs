@@ -39,4 +39,5 @@ public static class Imports
     
     public static bool IsDefined(string name) => ImportsList.ContainsKey(name);
     public static Dictionary<string, Function> Get(string import) => ImportsList[import];
+    public static Dictionary<string, Dictionary<string, Function>> Get() => ImportsList;
 }
