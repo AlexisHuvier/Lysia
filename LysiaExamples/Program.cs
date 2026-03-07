@@ -19,6 +19,6 @@ Console.WriteLine("=============");
 Lysia.Program.RunFile(["Examples/file"]);
 Console.WriteLine();
 Console.WriteLine("=============");
-Console.WriteLine("EXTERN MODULE EXAMPLE");
+Console.WriteLine("IMPORT EXAMPLE");
 Console.WriteLine("=============");
-Lysia.Program.RunFile(["Examples/externModule"]);
+Lysia.Program.RunFile(["Examples/import"]);

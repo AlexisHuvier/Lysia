@@ -151,7 +151,7 @@ public static class Core
                 if (Imports.IsDefined(import))
                 {
                     foreach (var function in Imports.Get(import))
-                        env.CoreMethods.Add(function.Key, function.Value);
+                        env.CoreMethods[function.Key] = function.Value;
                 }
                 else if (File.Exists(import) && Path.GetExtension(import) == ".lysia")
                     Interpreter.Eval(Parser.Parse(Lexer.Tokenize(File.ReadAllText(import))), env);
@@ -163,7 +163,7 @@ public static class Core
                     var field = imports?.GetField("ImportsList", BindingFlags.Public | BindingFlags.Static);
                     var importsList = (Dictionary<string, dynamic>)(field?.GetValue(null) ?? new Dictionary<string, dynamic>());
                     foreach (var function in importsList)
-                        env.CoreMethods.Add(function.Key, new ModuleFunction(function.Value));
+                        env.CoreMethods[function.Key] = new ModuleFunction(function.Value);
                 }
                 else
                     Error.ShowError("Unknown Import", parameters[0]);

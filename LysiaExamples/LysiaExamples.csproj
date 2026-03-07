@@ -23,7 +23,7 @@
       <None Update="Examples\func.lysia">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="Examples\externModule.lysia">
+      <None Update="Examples\import.lysia">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="Examples\file.lysia">

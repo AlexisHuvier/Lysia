@@ -1,0 +1,14 @@
+(
+    (# PARTIE IMPORT DE BASE)
+    (import io)
+    (io:display "Bonjour !")
+    
+    (# PARTIE IMPORT DE FICHIER LYSIA)
+    (import Examples/func.lysia)
+    (io:display "Bonjour depuis le fichier Lysia !")
+    (io:display "Retour de la fonction importée : " (test 1 20))
+    
+    (# PARTIE IMPORT MODULE EXTERNE)
+    (import example)
+    (io:display "Appel de la fonction du module externe : " (example:test "Print interne de la fonction test" "Appel réussi"))
+)
