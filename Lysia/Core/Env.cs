@@ -45,7 +45,7 @@ public class Env
         var env = new Env();
 
         env.AddCoreMethods([
-            "cast", "#", "def", "del", "for", "func", "import", "ret", "typeof",
+            "cast", "#", "def", "del", "for", "func", "import", "ret", "typeof", "while", "if",
             "+", "/", "%", "*", "-",
             "&&", "==", ">", ">=", "<", "<=", "!=", "||", "!"
         ], [
@@ -53,7 +53,8 @@ public class Env
             new Modules.CoreModules.Core.Def(), new Modules.CoreModules.Core.Del(),
             new Modules.CoreModules.Core.For(), new Modules.CoreModules.Core.Func(),
             new Modules.CoreModules.Core.Import(), new Modules.CoreModules.Core.Ret(),
-            new Modules.CoreModules.Core.TypeOf(),
+            new Modules.CoreModules.Core.TypeOf(), new Modules.CoreModules.Core.While(), 
+            new Modules.CoreModules.Core.If(),
             new Arithmetic.Add(), new Arithmetic.Div(), new Arithmetic.Mod(), new Arithmetic.Mul(), new Arithmetic.Sub(),
             new Logic.And(), new Logic.Equals(), new Logic.Greater(), new Logic.GreaterOrEquals(), new Logic.Less(), 
             new Logic.LessOrEquals(), new Logic.NotEquals(), new Logic.Or(), new Logic.Not()

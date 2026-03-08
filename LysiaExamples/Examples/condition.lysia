@@ -1,0 +1,6 @@
+﻿(
+    (import io)
+    (def a 4)
+    (if (> a 3) (io:display "a is greater than 3") (io:display "a is not greater than 3"))
+    (if (! (!= a 3)) (io:display "a is 3") (io:display "a is not 3"))
+)

@@ -97,6 +97,33 @@ public static class Core
         }
     }
 
+    [Docs("If", "Executes the given code if the condition is true, otherwise executes the given code")]
+    [DocsExample("(if (== 1 1) (io:display true) (io:display false))", "true")]
+    public class If() : Function([3], [], false)
+    {
+        public override dynamic? Eval(Env env, List<dynamic> parameters)
+        {
+            var values = (List<dynamic>)base.Eval(env, parameters)!;
+            if (Interpreter.Eval(values[0], env) is bool condition)
+                return Interpreter.Eval(condition ? values[1] : values[2], env);
+            Error.ShowError("Expected Boolean", values[0]);
+            return null;
+        }
+    }
+
+    [Docs("While", "Executes the given code while the condition is true")]
+    [DocsExample("(while (!= 1 1) (io:display true))", "")]
+    public class While() : Function([2], [], false)
+    {
+        public override dynamic? Eval(Env env, List<dynamic> parameters)
+        {
+            var values = (List<dynamic>)base.Eval(env, parameters)!;
+            while (Interpreter.Eval(values[0], env) is true)
+                Interpreter.Eval(values[1], env);
+            return null;
+        }
+    }
+    
     [Docs("For", "Iterates over a range of values")]
     [DocsExample("(for i (0 10 1) (io:display i))", "0 1 2 3 4 5 6 7 8 9")]
     public class For() : Function([3], [], false)

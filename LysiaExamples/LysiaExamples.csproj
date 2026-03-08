@@ -17,7 +17,7 @@
       <None Update="Examples\basic.lysia">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="Examples\for.lysia">
+      <None Update="Examples\loop.lysia">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="Examples\func.lysia">
@@ -27,6 +27,9 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="Examples\file.lysia">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Examples\condition.lysia">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>
