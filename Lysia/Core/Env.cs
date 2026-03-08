@@ -47,7 +47,7 @@ public class Env
         env.AddCoreMethods([
             "cast", "#", "def", "del", "for", "func", "import", "ret", "typeof",
             "+", "/", "%", "*", "-",
-            "&&", "==", ">", ">=", "<", "<=", "!=", "||"
+            "&&", "==", ">", ">=", "<", "<=", "!=", "||", "!"
         ], [
             new Modules.CoreModules.Core.Cast(), new Modules.CoreModules.Core.Comment(),
             new Modules.CoreModules.Core.Def(), new Modules.CoreModules.Core.Del(),
@@ -56,7 +56,7 @@ public class Env
             new Modules.CoreModules.Core.TypeOf(),
             new Arithmetic.Add(), new Arithmetic.Div(), new Arithmetic.Mod(), new Arithmetic.Mul(), new Arithmetic.Sub(),
             new Logic.And(), new Logic.Equals(), new Logic.Greater(), new Logic.GreaterOrEquals(), new Logic.Less(), 
-            new Logic.LessOrEquals(), new Logic.NotEquals(), new Logic.Or()
+            new Logic.LessOrEquals(), new Logic.NotEquals(), new Logic.Or(), new Logic.Not()
         ]);
         
         env.AddVariables([ "true", "false"  ], [ true, false ]);

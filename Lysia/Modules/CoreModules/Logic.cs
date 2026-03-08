@@ -95,4 +95,15 @@ public static class Logic
             return values[0] || values[1];
         }
     }
+
+    [Docs("Not", "Returns the opposite of the value")]
+    [DocsExample("(! true)", "false")]
+    public class Not() : Function([1], [["bool"]], true)
+    {
+        public override dynamic? Eval(Env env, List<dynamic> parameters)
+        {
+            var value = (List<dynamic>)base.Eval(env, parameters)!;
+            return !value[0];
+        }
+    }
 }
