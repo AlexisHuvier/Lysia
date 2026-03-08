@@ -103,6 +103,28 @@ Parameters evaluated : Yes
 Examples : 
 - `(typeof 42)` => int
 
+## Function - While
+
+Executes the given code while the condition is true
+
+Symbol : while  
+Parameters : 2 - Any type  
+Parameters evaluated : No
+
+Examples : 
+- `(while (!= 1 1) (io:display true))` => 
+
+## Function - If
+
+Executes the given code if the condition is true, otherwise executes the given code
+
+Symbol : if  
+Parameters : 3 - Any type  
+Parameters evaluated : No
+
+Examples : 
+- `(if (== 1 1) (io:display true) (io:display false))` => true
+
 ## Function - Add
 
 Adds all the given values together
@@ -246,6 +268,17 @@ Parameters evaluated : Yes
 
 Examples : 
 - `(|| true false)` => true
+
+## Function - Not
+
+Returns the opposite of the value
+
+Symbol : !  
+Parameters : 1 - bool  
+Parameters evaluated : Yes
+
+Examples : 
+- `(! true)` => false
 
 ## Variable - true
 
