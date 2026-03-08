@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using Lysia.Core;
 using Lysia.Objects;
+using Lysia.Utils;
 
 namespace Lysia.Modules.CoreModules;
 
 public static class Logic
 {
+    [Docs("And", "Returns true if both values are true")]
+    [DocsExample("(&& true true)", "true")]
     public class And() : Function([2], [["bool"], ["bool"]], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -16,6 +19,8 @@ public static class Logic
         }
     }
     
+    [Docs("Equals", "Returns true if both values are equal")]
+    [DocsExample("(== 42 42)", "true")]
     public new class Equals() : Function([2], [], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -25,6 +30,8 @@ public static class Logic
         }
     }
     
+    [Docs("Greater", "Returns true if the first value is greater than the second")]
+    [DocsExample("(> 42 41)", "true")]
     public class Greater() : Function([2], [], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -34,6 +41,8 @@ public static class Logic
         }
     }
     
+    [Docs("GreaterOrEquals", "Returns true if the first value is greater than or equal to the second")]
+    [DocsExample("(>= 42 42)", "true")]
     public class GreaterOrEquals() : Function([2], [], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -43,6 +52,8 @@ public static class Logic
         }
     }
     
+    [Docs("Less", "Returns true if the first value is less than the second")]
+    [DocsExample("(< 42 43)", "true")]
     public class Less() : Function([2], [], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -52,6 +63,8 @@ public static class Logic
         }
     }
     
+    [Docs("LessOrEquals", "Returns true if the first value is less than or equal to the second")]
+    [DocsExample("(<= 42 42)", "true")]
     public class LessOrEquals() : Function([2], [], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -61,6 +74,8 @@ public static class Logic
         }
     }
     
+    [Docs("NotEquals", "Returns true if the first value is not equal to the second")]
+    [DocsExample("(!= 42 43)", "true")]
     public class NotEquals() : Function([2], [], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -70,6 +85,8 @@ public static class Logic
         }
     }
     
+    [Docs("Or", "Returns true if either value is true")]
+    [DocsExample("(|| true false)", "true")]
     public class Or() : Function([2], [["bool"], ["bool"]], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)

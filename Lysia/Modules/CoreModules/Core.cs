@@ -6,11 +6,14 @@ using System.Reflection;
 using Lysia.Core;
 using Lysia.Objects;
 using Lysia.Token;
+using Lysia.Utils;
 
 namespace Lysia.Modules.CoreModules;
 
 public static class Core
 {
+    [Docs("Cast", "Converts the given value to the specified type")]
+    [DocsExample("(cast 1 float)", "1.0")]
     public class Cast() : Function([2], [], false)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -48,8 +51,12 @@ public static class Core
         }
     }
     
+    [Docs("Comment", "Adds a comment to the code")]
+    [DocsExample("(# This is a comment)", "")]
     public class Comment() : Function([], [], false);
 
+    [Docs("Def", "Defines a new variable with the given name and value")]
+    [DocsExample("(def x 2)", "2")]
     public class Def() : Function([2], [], false)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -65,6 +72,8 @@ public static class Core
         }
     }
 
+    [Docs("Del", "Deletes the variable with the given name")]
+    [DocsExample("(del x)", "")]
     public class Del() : Function([1], [], false)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -88,6 +97,8 @@ public static class Core
         }
     }
 
+    [Docs("For", "Iterates over a range of values")]
+    [DocsExample("(for i (0 10 1) (io:display i))", "0 1 2 3 4 5 6 7 8 9")]
     public class For() : Function([3], [], false)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -129,6 +140,8 @@ public static class Core
         }
     }
 
+    [Docs("Func", "Defines a new function with the given name and body")]
+    [DocsExample("(func (x y) (ret (+ x y)))", "Function which adds two numbers")]
     public class Func() : Function([2], [], false)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -139,6 +152,10 @@ public static class Core
         }
     }
 
+    [Docs("Import", "Imports a module or file")]
+    [DocsExample("(import io)", "")]
+    [DocsExample("(import externModule)", "")]
+    [DocsExample("(import file.lysia)", "")]
     public class Import() : Function([1], [], false)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -150,7 +167,7 @@ public static class Core
                 var import = token.Value;
                 if (Imports.IsDefined(import))
                 {
-                    foreach (var function in Imports.Get(import))
+                    foreach (var function in Imports.Get(import).GetMethod("GetImports")?.Invoke(null, null) as Dictionary<string, Function> ?? [])
                         env.CoreMethods[function.Key] = function.Value;
                 }
                 else if (File.Exists(import) && Path.GetExtension(import) == ".lysia")
@@ -161,7 +178,7 @@ public static class Core
                         Environment.ExpandEnvironmentVariables($"%appdata%/LysiaModules/{import}.dll"));
                     var imports = dll.GetTypes().FirstOrDefault(x => x.Name == "Imports");
                     var field = imports?.GetField("ImportsList", BindingFlags.Public | BindingFlags.Static);
-                    var importsList = (Dictionary<string, dynamic>)(field?.GetValue(null) ?? new Dictionary<string, dynamic>());
+                    var importsList = (Dictionary<string, Function>)(field?.GetValue(null) ?? new Dictionary<string, Function>());
                     foreach (var function in importsList)
                         env.CoreMethods[function.Key] = new ModuleFunction(function.Value);
                 }
@@ -174,7 +191,9 @@ public static class Core
             return null;
         }
     }
-
+    
+    [Docs("Ret", "Returns a value from a function")]
+    [DocsExample("(ret 42)", "42")]
     public class Ret() : Function([1], [], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -184,6 +203,8 @@ public static class Core
         }
     }
 
+    [Docs("TypeOf", "Returns the type of a value")]
+    [DocsExample("(typeof 42)", "int")]
     public class TypeOf() : Function([1], [], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -191,7 +212,7 @@ public static class Core
             var values = (List<dynamic>)base.Eval(env, parameters)!;
 
             return values[0] switch
-            {
+            { 
                 Dictionary<dynamic, dynamic> => "dict",
                 List<dynamic> => "list",
                 int => "int",

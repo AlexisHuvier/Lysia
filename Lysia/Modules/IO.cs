@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Text;
 using Lysia.Core;
 using Lysia.Objects;
+using Lysia.Utils;
 
 namespace Lysia.Modules;
 
+[Docs("IO", "Provides functions for input and output")]
 public static class Io
 {
+    [Docs("Display", "Prints the given values to the console")]
+    [DocsExample("(io:display 42)", "42")]
     public class Display() : Function([], [], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -42,6 +46,8 @@ public static class Io
         }
     }
 
+    [Docs("Input", "Reads a line from the console")]
+    [DocsExample("(io:input)", "42")]
     public class Input() : Function([], [], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -52,4 +58,10 @@ public static class Io
             return Console.ReadLine();
         }
     }
+    
+    public static Dictionary<string, Function> GetImports() => new()
+        {
+            { "io:display", new Display() },
+            { "io:input", new Input() }
+        };
 }
