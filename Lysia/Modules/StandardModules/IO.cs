@@ -5,7 +5,7 @@ using Lysia.Core;
 using Lysia.Objects;
 using Lysia.Utils;
 
-namespace Lysia.Modules;
+namespace Lysia.Modules.StandardModules;
 
 [Docs("IO", "Provides functions for input and output")]
 public static class Io

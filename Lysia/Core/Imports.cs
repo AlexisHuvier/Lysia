@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Lysia.Modules;
+using Lysia.Modules.StandardModules;
 using Lysia.Objects;
 
 namespace Lysia.Core;
@@ -11,7 +12,7 @@ public static class Imports
     {
         { "io", typeof(Io) },
         { "io:file", typeof(IoFile) },
-        { "lysia", typeof(Modules.Lysia) }
+        { "lysia", typeof(Modules.StandardModules.Lysia) },
     };
     
     public static bool IsDefined(string name) => ImportsList.ContainsKey(name);

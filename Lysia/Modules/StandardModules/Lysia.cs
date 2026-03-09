@@ -4,7 +4,7 @@ using Lysia.Core;
 using Lysia.Objects;
 using Lysia.Utils;
 
-namespace Lysia.Modules;
+namespace Lysia.Modules.StandardModules;
 
 [Docs("Lysia", "Main module for Lysia")]
 public static class Lysia
