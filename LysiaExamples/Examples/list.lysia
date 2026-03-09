@@ -1,0 +1,11 @@
+﻿(
+    (import io)
+    (import list)
+    
+    (def liste (list:create 1 2 3))
+    
+    (io:display "Liste : " liste)
+    (io:display "Premier élément : " (list:first liste))
+    (io:display "Dernier élément : " (list:last liste))
+)
+

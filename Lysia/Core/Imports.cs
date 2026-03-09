@@ -13,6 +13,7 @@ public static class Imports
         { "io", typeof(Io) },
         { "io:file", typeof(IoFile) },
         { "lysia", typeof(Modules.StandardModules.Lysia) },
+        { "list", typeof(LysiaList) },
     };
     
     public static bool IsDefined(string name) => ImportsList.ContainsKey(name);
