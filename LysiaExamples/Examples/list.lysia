@@ -7,5 +7,22 @@
     (io:display "Liste : " liste)
     (io:display "Premier élément : " (list:first liste))
     (io:display "Dernier élément : " (list:last liste))
+    (io:display "Taille : " (list:len liste))
+    (io:display)
+    (io:display "Range 1 5 : " (list:range 1 5))
+    (list:add liste 4)
+    (io:display "Liste : " liste)
+    (list:remove liste 2)
+    (io:display "Liste : " liste)
+    (list:set liste 1 4)
+    (io:display "Liste : " liste)
+    (io:display "Liste : " (list:+ liste (list:create 1 2 3)))
+    (list:insert liste 2 4)
+    (io:display "Liste : " liste)
+    (io:display "Has 4 : " (list:in liste 4))
+    (io:display "Get 2 : " (list:get liste 2))
+    (io:display "Clear : " (list:clear liste))
 )
+
+
 
