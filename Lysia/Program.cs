@@ -54,8 +54,7 @@ public static class Program
         }
         catch (System.Exception e)
         {
-            if (Interpreter.Debug)
-                System.Console.WriteLine(e);
+            System.Console.WriteLine(e);
         }
     }
     
@@ -91,8 +90,7 @@ public static class Program
             }
             catch (System.Exception e)
             {
-                if (Interpreter.Debug)
-                    System.Console.WriteLine(e);
+                System.Console.WriteLine(e);
             }
             System.Console.Write("Lysia > ");
         }
