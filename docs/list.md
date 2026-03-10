@@ -22,7 +22,7 @@ Parameters : 1 - list
 Parameters evaluated : Yes
 
 Examples : 
-- `(list:first [1 2 3])` => 1
+- `(list:first (list:create 1 2 3))` => 1
 
 ## Function - Last
 
@@ -33,7 +33,7 @@ Parameters : 1 - list
 Parameters evaluated : Yes
 
 Examples : 
-- `(list:last [1 2 3])` => 3
+- `(list:last (list:create 1 2 3))` => 3
 
 ## Function - Range
 
@@ -55,7 +55,7 @@ Parameters : 2 - list, int
 Parameters evaluated : Yes
 
 Examples : 
-- `(list:get [1 2 3] 1)` => 2
+- `(list:get (list:create 1 2 3) 1)` => 2
 
 ## Function - Len
 
@@ -66,7 +66,7 @@ Parameters : 1 - list
 Parameters evaluated : Yes
 
 Examples : 
-- `(list:len [1 2 3])` => 3
+- `(list:len (list:create 1 2 3))` => 3
 
 ## Function - Add
 
@@ -77,7 +77,7 @@ Parameters : 2 - list,
 Parameters evaluated : Yes
 
 Examples : 
-- `(list:add [1 2] 3)` => [1, 2, 3]
+- `(list:add (list:create 1 2) 3)` => [1, 2, 3]
 
 ## Function - Remove
 
@@ -88,7 +88,7 @@ Parameters : 2 - list, int
 Parameters evaluated : Yes
 
 Examples : 
-- `(list:remove [1 2 3] 1)` => [1, 3]
+- `(list:remove (list:create 1 2 3) 1)` => [1, 3]
 
 ## Function - In
 
@@ -99,7 +99,7 @@ Parameters : 2 - list,
 Parameters evaluated : Yes
 
 Examples : 
-- `(list:in [1 2 3] 2)` => true
+- `(list:in (list:create 1 2 3) 2)` => true
 
 ## Function - Insert
 
@@ -110,7 +110,7 @@ Parameters : 3 - list, int,
 Parameters evaluated : Yes
 
 Examples : 
-- `(list:insert [1 2 3] 1 4)` => [1, 4, 2, 3]
+- `(list:insert (list:create 1 2 3) 1 4)` => [1, 4, 2, 3]
 
 ## Function - Replace
 
@@ -121,7 +121,7 @@ Parameters : 3 - list, int,
 Parameters evaluated : Yes
 
 Examples : 
-- `(list:replace [1 2 3] 1 4)` => [1, 4, 3]
+- `(list:replace (list:create 1 2 3) 1 4)` => [1, 4, 3]
 
 ## Function - Clear
 
@@ -132,7 +132,7 @@ Parameters : 1 - list
 Parameters evaluated : Yes
 
 Examples : 
-- `(list:clear [1 2 3])` => []
+- `(list:clear (list:create 1 2 3))` => []
 
 ## Function - AddList
 
@@ -143,5 +143,5 @@ Parameters : 2 - list, list
 Parameters evaluated : Yes
 
 Examples : 
-- `(list:+ [1 2] [3 4])` => [1, 2, 3, 4]
+- `(list:+ (list:create 1 2) (list:create 3 4))` => [1, 2, 3, 4]
 

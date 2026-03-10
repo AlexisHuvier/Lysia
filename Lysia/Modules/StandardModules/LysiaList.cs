@@ -21,7 +21,7 @@ public class LysiaList
     }
 
     [Docs("First", "Returns the first element of a list")]
-    [DocsExample("(list:first [1 2 3])", "1")]
+    [DocsExample("(list:first (list:create 1 2 3))", "1")]
     public class First() : Function([1], [["list"]], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -32,7 +32,7 @@ public class LysiaList
     }
 
     [Docs("Last", "Returns the last element of a list")]
-    [DocsExample("(list:last [1 2 3])", "3")]
+    [DocsExample("(list:last (list:create 1 2 3))", "3")]
     public class Last() : Function([1], [["list"]], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -56,7 +56,7 @@ public class LysiaList
     }
 
     [Docs("Get", "Returns the element at the given index of a list")]
-    [DocsExample("(list:get [1 2 3] 1)", "2")]
+    [DocsExample("(list:get (list:create 1 2 3) 1)", "2")]
     public class Get() : Function([2], [["list"], ["int"]], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -72,7 +72,7 @@ public class LysiaList
     }
 
     [Docs("Len", "Returns the length of a list")]
-    [DocsExample("(list:len [1 2 3])", "3")]
+    [DocsExample("(list:len (list:create 1 2 3))", "3")]
     public class Len() : Function([1], [["list"]], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -84,7 +84,7 @@ public class LysiaList
     }
 
     [Docs("Add", "Adds an element to the end of a list")]
-    [DocsExample("(list:add [1 2] 3)", "[1, 2, 3]")]
+    [DocsExample("(list:add (list:create 1 2) 3)", "[1, 2, 3]")]
     public class Add() : Function([2], [["list"], []], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -96,7 +96,7 @@ public class LysiaList
     }
 
     [Docs("Remove", "Removes an element from a list by index")]
-    [DocsExample("(list:remove [1 2 3] 1)", "[1, 3]")]
+    [DocsExample("(list:remove (list:create 1 2 3) 1)", "[1, 3]")]
     public class Remove() : Function([2], [["list"], ["int"]], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -108,7 +108,7 @@ public class LysiaList
     }
 
     [Docs("In", "Checks if an element is in a list")]
-    [DocsExample("(list:in [1 2 3] 2)", "true")]
+    [DocsExample("(list:in (list:create 1 2 3) 2)", "true")]
     public class In() : Function([2], [["list"], []], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -119,7 +119,7 @@ public class LysiaList
     }
 
     [Docs("Insert", "Inserts an element at a specific index in a list")]
-    [DocsExample("(list:insert [1 2 3] 1 4)", "[1, 4, 2, 3]")]
+    [DocsExample("(list:insert (list:create 1 2 3) 1 4)", "[1, 4, 2, 3]")]
     public class Insert() : Function([3], [["list"], ["int"], []], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -131,7 +131,7 @@ public class LysiaList
     }
 
     [Docs("Replace", "Replaces an element at a specific index in a list")]
-    [DocsExample("(list:replace [1 2 3] 1 4)", "[1, 4, 3]")]
+    [DocsExample("(list:replace (list:create 1 2 3) 1 4)", "[1, 4, 3]")]
     public class Set() : Function([3], [["list"], ["int"], []], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -143,7 +143,7 @@ public class LysiaList
     }
 
     [Docs("Clear", "Clears a list")]
-    [DocsExample("(list:clear [1 2 3])", "[]")]
+    [DocsExample("(list:clear (list:create 1 2 3))", "[]")]
     public class Clear() : Function([1], [["list"]], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
@@ -155,7 +155,7 @@ public class LysiaList
     }
 
     [Docs("AddList", "Adds two lists together")]
-    [DocsExample("(list:+ [1 2] [3 4])", "[1, 2, 3, 4]")]
+    [DocsExample("(list:+ (list:create 1 2) (list:create 3 4))", "[1, 2, 3, 4]")]
     public class AddList() : Function([2], [["list"], ["list"]], true)
     {
         public override dynamic? Eval(Env env, List<dynamic> parameters)
