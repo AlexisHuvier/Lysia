@@ -1,0 +1,15 @@
+﻿(
+    (import io)
+    (import dict)
+    (import list)
+
+    (def dictionnaire (dict:create (list:create "a" "b" "c") (list:create 1 2 3)))
+    (io:display "Dict : " dictionnaire)
+    (io:display "Dict[a] : " (dict:get dictionnaire "a"))
+    (dict:set dictionnaire "a" 4)
+    (io:display "Dict[a] : " (dict:get dictionnaire "a"))
+    (io:display "Has Key D : " (dict:haskey dictionnaire "d"))
+    (io:display "Has Value 2 : " (dict:hasvalue dictionnaire 2))
+    (io:display "Keys : " (dict:keys dictionnaire))
+    (io:display "Values : " (dict:values dictionnaire))
+)
