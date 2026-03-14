@@ -6,6 +6,13 @@ while (true)
 {
     Console.WriteLine("Which example do you want to run? (exit to quit - examples to list examples)");
     var example = Console.ReadLine();
+    var debug = false;
+    if (example?.StartsWith("-d ") ?? false)
+    {
+        debug = true;
+        example = example[3..];
+    }
+
     if (example == "exit")
     {
         Console.WriteLine("Exiting Lysia Examples...");
@@ -23,6 +30,9 @@ while (true)
         continue;
     }
     
-    Lysia.Program.RunFile([$"Examples/{example}"]);
+    if (debug)
+        Lysia.Program.RunFile(["-d", $"Examples/{example}"]);
+    else
+        Lysia.Program.RunFile([$"Examples/{example}"]);
     Console.WriteLine();
 }
